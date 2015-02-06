@@ -11,6 +11,10 @@
 public class Start {
     public static void main(String args[])
     {
-    //djhfjfhfhfhfhfhhfhfhfhf
+        System.out.println("hey");
+    }
+    public void doSomething()
+    {
+        
     }
 }
