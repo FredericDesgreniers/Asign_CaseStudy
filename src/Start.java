@@ -9,6 +9,7 @@
  * @author cstuser
  */
 public class Start {
+    public String h="das";
     public static void main(String args[])
     {
         System.out.println("hey");
