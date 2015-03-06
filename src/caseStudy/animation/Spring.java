@@ -4,13 +4,17 @@ import caseStudy.AnimationBase;
 import caseStudy.IConstants;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 
 public final class Spring extends AnimationBase{
     
-    double period;
     double mass;
+    double period;
     double springConstant;
     double amplitude;
+    ImageView spring;
+    Circle hangingMass;
     
     public Spring(){
         
@@ -27,7 +31,10 @@ public final class Spring extends AnimationBase{
         setAmplitude(Double.parseDouble(fields[2].getText()));
         period = calculatePeriod();
         
-        //Image springGraphic = new Image();
+        Image springGraphic = new Image("SpringCaseStudy.png"); //idk if this works
+        spring = new ImageView(springGraphic);
+        
+        hangingMass = new Circle(/* x and y positions here*/ 50.00);
     }
     
     public double calculatePeriod(){
@@ -69,6 +76,4 @@ public final class Spring extends AnimationBase{
     public double getAmplitude() {
         return amplitude;
     }
-    
-    
 }

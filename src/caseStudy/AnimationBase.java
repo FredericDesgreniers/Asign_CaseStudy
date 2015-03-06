@@ -4,5 +4,5 @@ import javafx.animation.Timeline;
 
 public class AnimationBase{
     
-    Timeline placeholder = new Timeline();
+    public Timeline placeholder = new Timeline();
 }
