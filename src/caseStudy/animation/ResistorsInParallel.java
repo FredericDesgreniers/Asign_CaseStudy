@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
 
-public class Resistors_In_Parallel extends AnimationBase{
+public class ResistorsInParallel extends AnimationBase{
     
     public double resistors[] = new double[3];
     public double voltage;

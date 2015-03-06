@@ -4,7 +4,7 @@ import caseStudy.AnimationBase;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
 
-public class Lenz_Law extends AnimationBase{
+public class LenzLaw extends AnimationBase{
     
     public double charge;
     public double electricField;
