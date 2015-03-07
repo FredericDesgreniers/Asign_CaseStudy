@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 public final class Spring extends AnimationBase{
     
@@ -30,11 +31,15 @@ public final class Spring extends AnimationBase{
         setSpringConstant(Double.parseDouble(fields[1].getText()));
         setAmplitude(Double.parseDouble(fields[2].getText()));
         period = calculatePeriod();
+        //placeholder.setCycleDuration(new Duration(period*1000)); //not sure what is happening here
         
         Image springGraphic = new Image("SpringCaseStudy.png"); //idk if this works
         spring = new ImageView(springGraphic);
+        spring.setFitHeight(100);
+        spring.setPreserveRatio(true);
+        spring.setSmooth(true);
         
-        hangingMass = new Circle(/* x and y positions here*/ 50.00);
+        hangingMass = new Circle(/* x and y positions here*/ 30.00);
     }
     
     public double calculatePeriod(){
@@ -42,7 +47,16 @@ public final class Spring extends AnimationBase{
     }
     
     public void calculateKeyfames(){
-        
+        double stretchPercent = 0.00;
+        //adds the keyframes to the timeline
+        for(int i = 0 ; placeholder.getCycleDuration().greaterThan(new Duration(i*33)) ; i++){
+            //calculate percent extension
+            stretchPercent = 1+Math.cos((i*33/1000)*Math.sqrt(springConstant/mass));
+            //spring
+            spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
+            //mass
+                //move the circle
+        }
     }
 
     public void setPeriod(double period) {
