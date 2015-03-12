@@ -2,7 +2,7 @@ package caseStudy;
 
 import javafx.animation.Timeline;
 
-public class AnimationBase{
+public abstract class AnimationBase{
     
     public Timeline placeholder = new Timeline();
 }
