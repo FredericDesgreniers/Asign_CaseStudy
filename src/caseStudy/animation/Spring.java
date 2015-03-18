@@ -2,6 +2,8 @@ package caseStudy.animation;
 
 import caseStudy.AnimationBase;
 import caseStudy.IConstants;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,7 +41,7 @@ public final class Spring extends AnimationBase{
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
         
-        hangingMass = new Circle(/* x and y positions here*/ 30.00);
+        hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
     }
     
     public double calculatePeriod(){
@@ -55,7 +57,7 @@ public final class Spring extends AnimationBase{
             //spring
             spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
             //mass
-                //move the circle
+            hangingMass.setCenterY(30.00 + /*max extension*/100/**/*stretchPercent); //CHANGE FINAL POSITIONS
         }
     }
 
