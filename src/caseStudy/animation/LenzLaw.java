@@ -3,6 +3,9 @@ package caseStudy.animation;
 import caseStudy.AnimationBase;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 public class LenzLaw extends AnimationBase{
     
@@ -10,7 +13,6 @@ public class LenzLaw extends AnimationBase{
     public double electricField;
     public double initialVelocity;
     public double magneticField;
-    public AnimationBase animation;
     public Circle object;
     public Circle electricFieldSource;
     public Circle magneticFieldSource;
@@ -19,7 +21,14 @@ public class LenzLaw extends AnimationBase{
     public TextField initialVelocityField;
     public TextField magneticFieldField;
     
+    Timeline placeholder; //remove when AnimationBase is completed
     
+    
+    
+    
+    public void initialize(){
+        this.placeholder = new Timeline(new KeyFrame(Duration.millis(1000)));
+    }
     /*
     *
     *Accessor methods
