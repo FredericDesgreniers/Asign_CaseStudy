@@ -1,6 +1,9 @@
 package caseStudy.animation;
 
-public class Pendulum{
+import caseStudy.AnimationBase;
+
+public class Pendulum extends AnimationBase{
+
     
     
 }

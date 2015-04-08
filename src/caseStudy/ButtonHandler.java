@@ -5,6 +5,9 @@
  */
 package caseStudy;
 
+import caseStudy.animation.LenzLaw;
+import caseStudy.animation.Pendulum;
+import caseStudy.animation.Spring;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -30,7 +33,9 @@ public class ButtonHandler implements EventHandler{
               case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
               case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
                   
-                  
+              case IConstants.AN_WAVES1:caseStudy.setCurrentAnimation(new Spring());break;
+              case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum());break;
+              case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw());break;
           }
           
       }
