@@ -40,6 +40,7 @@ public final class Spring extends AnimationBase{
         spring.setFitHeight(100);
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
+        getChildren().add(spring);
         
         hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
     }
@@ -58,6 +59,7 @@ public final class Spring extends AnimationBase{
             spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
             //mass
             hangingMass.setCenterY(30.00 + /*max extension*/100/**/*stretchPercent); //CHANGE FINAL POSITIONS
+            timeline.getKeyFrames().add(new KeyFrame(new Duration(0),new KeyValue(hangingMass.centerYProperty(),400)));
         }
     }
 
