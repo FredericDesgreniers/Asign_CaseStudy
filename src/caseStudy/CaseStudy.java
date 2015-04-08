@@ -16,11 +16,12 @@ public class CaseStudy extends Application{
     public AnimationBase currentAnimation;
     public EventHandler handler;
     @Override
-    public void start(Stage primaryStage) throws Exception {        
+    public void start(Stage primaryStage) throws Exception {  
+        handler=new ButtonHandler(this);
         mediaButtons=new MediaPane(this);
         menuPane=new MenuPane(this);
         currentAnimation=new Spring();
-        handler=new ButtonHandler(this);
+        
         StackPane root=new StackPane();
         
         GridPane grid=new GridPane()

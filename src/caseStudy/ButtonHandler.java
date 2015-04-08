@@ -24,10 +24,11 @@ public class ButtonHandler implements EventHandler{
       if(event.getSource() instanceof Button)
       {
           Button b=(Button)event.getSource();
+          System.out.println(b.getText());
           switch(b.getText())
           {
-              case "play":caseStudy.currentAnimation.start();
-              case "reset":caseStudy.currentAnimation.reset();
+              case "Play":caseStudy.currentAnimation.start();break;
+              case "reset":caseStudy.currentAnimation.reset();break;
           }
           
       }

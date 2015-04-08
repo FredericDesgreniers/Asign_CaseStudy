@@ -2,8 +2,12 @@ package caseStudy.animation;
 
 import caseStudy.AnimationBase;
 import caseStudy.IConstants;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,7 +45,7 @@ public final class Spring extends AnimationBase implements IConstants{
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
         getChildren().add(spring);
-        spring.setLayoutX(DIM_X/2);
+        spring.setLayoutX(0);
         
         hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
         getChildren().add(hangingMass);
@@ -54,18 +58,25 @@ public final class Spring extends AnimationBase implements IConstants{
     public void calculateKeyframes(){
         double stretchPercent = 0.00;
         //adds the keyframes to the timeline
-        for(int i = 0 ; timeline.getCycleDuration().greaterThan(new Duration(i*33)) ; i++){
+        int tempI=-1;
+        List<KeyFrame> frames=new ArrayList();
+        for(int i = 1 ; i<100 ; i++){
+            tempI=i;
             //calculate percent extension
-            stretchPercent = 1+Math.cos((i*33/1000)*Math.sqrt(springConstant/mass));
+            //stretchPercent = 1+Math.cos((i*33/1000)*Math.sqrt(springConstant/mass));
             //spring
-            spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
+            //spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
             //mass
             //hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent); //CHANGE FINAL POSITIONS
-            timeline.getKeyFrames().add(new KeyFrame(new Duration(33),new KeyValue(hangingMass.centerYProperty(),30.00 + (DIM_Y/2)*stretchPercent)));
+            KeyFrame kf=new KeyFrame(Duration.millis(100+i*100),new KeyValue(spring.xProperty(),100+i*5 ));
+            System.out.println(i);
+            frames.add(kf);
         }
+       
+        timeline.getKeyFrames().addAll(frames);
     }
     
-    public void play(){
+    public void start(){
         calculateKeyframes();
         timeline.play();
     }
