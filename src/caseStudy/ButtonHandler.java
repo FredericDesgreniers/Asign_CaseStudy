@@ -27,8 +27,10 @@ public class ButtonHandler implements EventHandler{
           System.out.println(b.getText());
           switch(b.getText())
           {
-              case "Play":caseStudy.currentAnimation.start();break;
-              case "reset":caseStudy.currentAnimation.reset();break;
+              case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
+              case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
+                  
+                  
           }
           
       }

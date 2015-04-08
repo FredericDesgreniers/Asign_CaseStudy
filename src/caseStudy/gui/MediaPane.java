@@ -25,13 +25,13 @@ public class MediaPane extends FlowPane{
     {
         this.setPrefSize(IConstants.DIM_X/2, IConstants.DIM_Y/2);
         this.caseStudy=caseStudy;
-        playBtn=new Button("Play");
+        playBtn=new Button(IConstants.MED_PLAY);
         playBtn.setOnAction(caseStudy.handler);
-        doneBtn=new Button("Done");
+        doneBtn=new Button(IConstants.MED_DONE);
         doneBtn.setOnAction(caseStudy.handler);
-        resetBtn=new Button("Reset");
+        resetBtn=new Button(IConstants.MED_RESET);
         resetBtn.setOnAction(caseStudy.handler);
-        helpBtn=new Button("Help");
+        helpBtn=new Button(IConstants.MED_HELP);
         helpBtn.setOnAction(caseStudy.handler);
         
         

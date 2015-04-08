@@ -7,6 +7,7 @@
 package caseStudy.gui;
 
 import caseStudy.CaseStudy;
+import caseStudy.IConstants;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -23,12 +24,18 @@ public class MenuPane extends FlowPane{
     public MenuPane(CaseStudy caseStudy)
     {
         this.caseStudy=caseStudy;
-        calc1Btn=new Button("Calculus 1");
-        calc2Btn=new Button("Calculus 2");
-        waves1Btn=new Button("Waves 1");
-        waves2Btn=new Button("Waves 2");
-        em1Btn=new Button("Em 1");
-        em2Btn=new Button("Em 2");
+        calc1Btn=new Button(IConstants.AN_CALC1);
+        calc1Btn.setOnAction(caseStudy.handler);
+        calc2Btn=new Button(IConstants.AN_CALC2);
+        calc2Btn.setOnAction(caseStudy.handler);
+        waves1Btn=new Button(IConstants.AN_WAVES1);
+        waves1Btn.setOnAction(caseStudy.handler);
+        waves2Btn=new Button(IConstants.AN_WAVES2);
+        waves2Btn.setOnAction(caseStudy.handler);
+        em1Btn=new Button(IConstants.AN_EM1);
+        em1Btn.setOnAction(caseStudy.handler);
+        em2Btn=new Button(IConstants.AN_EM2);
+        em2Btn.setOnAction(caseStudy.handler);
         
         this.getChildren().addAll(calc1Btn,calc2Btn,waves1Btn,waves2Btn,em1Btn,em2Btn);
         
