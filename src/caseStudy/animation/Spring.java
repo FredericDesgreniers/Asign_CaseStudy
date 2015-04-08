@@ -51,7 +51,7 @@ public final class Spring extends AnimationBase{
     public void calculateKeyfames(){
         double stretchPercent = 0.00;
         //adds the keyframes to the timeline
-        for(int i = 0 ; placeholder.getCycleDuration().greaterThan(new Duration(i*33)) ; i++){
+        for(int i = 0 ; timeline.getCycleDuration().greaterThan(new Duration(i*33)) ; i++){
             //calculate percent extension
             stretchPercent = 1+Math.cos((i*33/1000)*Math.sqrt(springConstant/mass));
             //spring

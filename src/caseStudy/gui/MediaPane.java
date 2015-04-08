@@ -9,6 +9,7 @@ package caseStudy.gui;
 import caseStudy.CaseStudy;
 import caseStudy.IConstants;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -17,7 +18,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author cstuser
  */
-public class MediaPane extends StackPane{
+public class MediaPane extends FlowPane{
     private CaseStudy caseStudy;
     private Button playBtn,doneBtn,resetBtn,helpBtn;
     public MediaPane(CaseStudy caseStudy)

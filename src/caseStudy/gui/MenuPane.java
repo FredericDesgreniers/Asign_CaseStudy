@@ -8,6 +8,7 @@ package caseStudy.gui;
 
 import caseStudy.CaseStudy;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -15,7 +16,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author cstuser
  */
-public class MenuPane extends StackPane{
+public class MenuPane extends FlowPane{
     private CaseStudy caseStudy;
     private Button calc1Btn,calc2Btn,waves1Btn,waves2Btn,em1Btn,em2Btn;
     

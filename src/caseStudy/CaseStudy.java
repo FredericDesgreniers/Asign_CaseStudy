@@ -21,7 +21,7 @@ public class CaseStudy extends Application{
         {
             
         };
-        grid.add(mediaButtons, 0, 0);
+        grid.add(mediaButtons, 1, 1);
         grid.add(menuPane, 0, 1);
         root.getChildren().add(grid);
         
