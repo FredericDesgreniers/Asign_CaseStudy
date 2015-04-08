@@ -20,7 +20,7 @@ public class CaseStudy extends Application{
         mediaButtons=new MediaPane(this);
         menuPane=new MenuPane(this);
         currentAnimation=new Spring();
-        handler=new ButtonHandler();
+        handler=new ButtonHandler(this);
         StackPane root=new StackPane();
         
         GridPane grid=new GridPane()

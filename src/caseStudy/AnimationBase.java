@@ -11,4 +11,12 @@ public abstract class AnimationBase extends FlowPane{
     {
         this.setPrefSize(IConstants.DIM_X, IConstants.DIM_Y/2);
     }
+    public void start()
+    {
+        timeline.play();
+    }
+    public void reset()
+    {
+        timeline.stop();
+    }
 }
