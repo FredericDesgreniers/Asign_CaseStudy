@@ -41,11 +41,8 @@ public final class Spring extends AnimationBase implements IConstants{
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
         getChildren().add(spring);
-<<<<<<< HEAD
-=======
         spring.setLayoutX(DIM_X/2);
         
->>>>>>> origin/master
         hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
         getChildren().add(hangingMass);
     }
