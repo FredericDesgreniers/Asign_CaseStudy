@@ -4,6 +4,7 @@ import caseStudy.animation.Spring;
 import caseStudy.gui.MediaPane;
 import caseStudy.gui.MenuPane;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -13,11 +14,13 @@ public class CaseStudy extends Application{
     private MediaPane mediaButtons;
     private MenuPane menuPane;
     public AnimationBase currentAnimation;
+    public EventHandler handler;
     @Override
     public void start(Stage primaryStage) throws Exception {        
         mediaButtons=new MediaPane(this);
         menuPane=new MenuPane(this);
         currentAnimation=new Spring();
+        handler=new ButtonHandler();
         StackPane root=new StackPane();
         
         GridPane grid=new GridPane()
