@@ -51,7 +51,7 @@ public final class Spring extends AnimationBase implements IConstants{
         return 2*IConstants.PI*Math.sqrt(getMass()/getSpringConstant());
     }
     
-    public void calculateKeyfames(){
+    public void calculateKeyframes(){
         double stretchPercent = 0.00;
         //adds the keyframes to the timeline
         for(int i = 0 ; timeline.getCycleDuration().greaterThan(new Duration(i*33)) ; i++){
@@ -60,9 +60,14 @@ public final class Spring extends AnimationBase implements IConstants{
             //spring
             spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
             //mass
-            hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent); //CHANGE FINAL POSITIONS
-            timeline.getKeyFrames().add(new KeyFrame(new Duration(0),new KeyValue(hangingMass.centerYProperty(),400)));
+            //hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent); //CHANGE FINAL POSITIONS
+            timeline.getKeyFrames().add(new KeyFrame(new Duration(33),new KeyValue(hangingMass.centerYProperty(),30.00 + (DIM_Y/2)*stretchPercent)));
         }
+    }
+    
+    public void play(){
+        calculateKeyframes();
+        timeline.play();
     }
 
     public void setPeriod(double period) {
