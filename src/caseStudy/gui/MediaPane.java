@@ -7,6 +7,7 @@
 package caseStudy.gui;
 
 import caseStudy.CaseStudy;
+import caseStudy.IConstants;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -21,6 +22,7 @@ public class MediaPane extends StackPane{
     private Button playBtn,doneBtn,resetBtn,helpBtn;
     public MediaPane(CaseStudy caseStudy)
     {
+        this.setPrefSize(IConstants.DIM_X/2, IConstants.DIM_Y/2);
         this.caseStudy=caseStudy;
         playBtn=new Button("Play");
         doneBtn=new Button("Done");

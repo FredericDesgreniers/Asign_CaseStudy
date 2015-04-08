@@ -1,6 +1,9 @@
 package caseStudy;
 
 public interface IConstants {
+    //FRAME
+    public static final double DIM_X=600;
+    public static final double DIM_Y=1000;
     
     //ADD YOUR STUFF HERE, try to keep dome fomatting
     

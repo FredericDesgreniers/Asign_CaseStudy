@@ -25,8 +25,9 @@ public class CaseStudy extends Application{
         grid.add(menuPane, 0, 1);
         root.getChildren().add(grid);
         
-        Scene scene=new Scene(root,300,300);
+        Scene scene=new Scene(root,IConstants.DIM_X,IConstants.DIM_Y);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         
     }
