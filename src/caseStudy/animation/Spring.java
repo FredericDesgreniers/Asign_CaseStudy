@@ -47,8 +47,8 @@ public final class Spring extends AnimationBase implements IConstants{
         getChildren().add(spring);
         spring.setLayoutX(0);
         
-        hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
-        getChildren().add(hangingMass);
+        hangingMass = new Circle(300.00, 50.00, 30.00); //CHANGE FINAL POSITIONS
+        //getChildren().add(hangingMass);
     }
     
     public double calculatePeriod(){
@@ -56,6 +56,17 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     public void calculateKeyframes(){
+        int i = 1;
+        KeyFrame[] frames = new KeyFrame[100];
+        while(i <= 100){
+            frames[i-1] = new KeyFrame(Duration.millis(50),new KeyValue(spring.xProperty(),200+200*(i-1)));
+            timeline.getKeyFrames().add(frames[i-1]);
+            i++;
+        }
+        timeline.getKeyFrames().addAll(frames);
+    }
+    
+    public void calculateKeyframes2(){
         double stretchPercent = 0.00;
         //adds the keyframes to the timeline
         int tempI=-1;
