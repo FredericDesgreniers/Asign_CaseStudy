@@ -22,7 +22,7 @@ public final class Spring extends AnimationBase{
     public Spring(){
         
         TextField[] fields = new TextField[3];
-        for(int i = 0 ; i <= 3 ; i++){
+        for(int i = 0 ; i < 3 ; i++){
             fields[i] = new TextField("3.00");
         //0 -> massField
         //1 -> constantield

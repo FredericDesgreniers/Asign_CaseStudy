@@ -1,5 +1,6 @@
 package caseStudy;
 
+import caseStudy.animation.Spring;
 import caseStudy.gui.MediaPane;
 import caseStudy.gui.MenuPane;
 import javafx.application.Application;
@@ -11,10 +12,12 @@ import javafx.stage.Stage;
 public class CaseStudy extends Application{
     private MediaPane mediaButtons;
     private MenuPane menuPane;
+    public AnimationBase currentAnimation;
     @Override
     public void start(Stage primaryStage) throws Exception {        
         mediaButtons=new MediaPane(this);
         menuPane=new MenuPane(this);
+        currentAnimation=new Spring();
         StackPane root=new StackPane();
         
         GridPane grid=new GridPane()
@@ -23,6 +26,7 @@ public class CaseStudy extends Application{
         };
         grid.add(mediaButtons, 1, 1);
         grid.add(menuPane, 0, 1);
+        grid.add(currentAnimation, 0, 0);
         root.getChildren().add(grid);
         
         Scene scene=new Scene(root,IConstants.DIM_X,IConstants.DIM_Y);
