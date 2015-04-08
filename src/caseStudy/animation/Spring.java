@@ -35,7 +35,7 @@ public final class Spring extends AnimationBase{
         period = calculatePeriod();
         //placeholder.setCycleDuration(new Duration(period*1000)); //not sure what is happening here
         
-        Image springGraphic = new Image("SpringCaseStudy.png"); //idk if this works
+        Image springGraphic = new Image("/res/SpringCaseStudy.png"); //idk if this works
         spring = new ImageView(springGraphic);
         spring.setFitHeight(100);
         spring.setPreserveRatio(true);
