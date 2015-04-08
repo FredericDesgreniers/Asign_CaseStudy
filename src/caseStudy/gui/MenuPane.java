@@ -9,12 +9,13 @@ package caseStudy.gui;
 import caseStudy.CaseStudy;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  *
  * @author cstuser
  */
-public class MenuPane extends Pane{
+public class MenuPane extends StackPane{
     private CaseStudy caseStudy;
     private Button calc1Btn,calc2Btn,waves1Btn,waves2Btn,em1Btn,em2Btn;
     
@@ -26,8 +27,9 @@ public class MenuPane extends Pane{
         waves1Btn=new Button("Waves 1");
         waves2Btn=new Button("Waves 2");
         em1Btn=new Button("Em 1");
-        em1Btn=new Button("Em 2");
+        em2Btn=new Button("Em 2");
         
+        this.getChildren().addAll(calc1Btn,calc2Btn,waves1Btn,waves2Btn,em1Btn,em2Btn);
         
     }
     
