@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public final class Spring extends AnimationBase{
+public final class Spring extends AnimationBase implements IConstants{
     
     double mass;
     double period;
@@ -41,7 +41,13 @@ public final class Spring extends AnimationBase{
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
         getChildren().add(spring);
+<<<<<<< HEAD
+=======
+        spring.setLayoutX(DIM_X/2);
+        
+>>>>>>> origin/master
         hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
+        getChildren().add(hangingMass);
     }
     
     public double calculatePeriod(){
@@ -57,7 +63,7 @@ public final class Spring extends AnimationBase{
             //spring
             spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight()); //this should be adding a keyframe
             //mass
-            hangingMass.setCenterY(30.00 + /*max extension*/100/**/*stretchPercent); //CHANGE FINAL POSITIONS
+            hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent); //CHANGE FINAL POSITIONS
             timeline.getKeyFrames().add(new KeyFrame(new Duration(0),new KeyValue(hangingMass.centerYProperty(),400)));
         }
     }
