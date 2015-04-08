@@ -2,8 +2,9 @@ package caseStudy;
 
 import javafx.animation.Timeline;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 
-public abstract class AnimationBase extends FlowPane{
+public abstract class AnimationBase extends Pane{
     
     public Timeline timeline = new Timeline();
     

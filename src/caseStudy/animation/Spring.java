@@ -41,7 +41,6 @@ public final class Spring extends AnimationBase{
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
         getChildren().add(spring);
-        
         hangingMass = new Circle(300.00, 50.00,  30.00); //CHANGE FINAL POSITIONS
     }
     
