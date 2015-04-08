@@ -8,13 +8,15 @@ package caseStudy.gui;
 
 import caseStudy.CaseStudy;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  *
  * @author cstuser
  */
-public class MediaPane extends Pane{
+public class MediaPane extends StackPane{
     private CaseStudy caseStudy;
     private Button playBtn,doneBtn,resetBtn,helpBtn;
     public MediaPane(CaseStudy caseStudy)
@@ -24,6 +26,6 @@ public class MediaPane extends Pane{
         doneBtn=new Button("Done");
         resetBtn=new Button("Reset");
         helpBtn=new Button("Help");
-              
+        this.getChildren().addAll(playBtn,doneBtn,resetBtn,helpBtn);
     }
 }
