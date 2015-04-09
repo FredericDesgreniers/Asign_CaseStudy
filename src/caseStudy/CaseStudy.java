@@ -21,10 +21,11 @@ public class CaseStudy extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {  
         handler=new ButtonHandler(this);
-        currentAnimation=new Spring();
 
         this.stage=primaryStage;
-        setCurrentAnimation(null);
+        setCurrentAnimation(new Spring());
+                stage.setResizable(false);
+        stage.show();
         
     }
     public void setCurrentAnimation(AnimationBase ab)
@@ -32,13 +33,13 @@ public class CaseStudy extends Application{
         GridPane grid=new GridPane();
         mediaButtons=new MediaPane(this);
         menuPane=new MenuPane(this);
+        currentAnimation=ab;
         grid.add(mediaButtons, 1, 1);
         grid.add(menuPane, 0, 1);
         grid.add(ab==null?new BlankAnimation():ab, 0, 0);
         scene=new Scene(grid,IConstants.DIM_X,IConstants.DIM_Y);
         
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+
     }
 }
