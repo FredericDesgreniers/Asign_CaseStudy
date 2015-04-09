@@ -1,5 +1,6 @@
 package caseStudy;
 
+import caseStudy.animation.BlankAnimation;
 import caseStudy.animation.Spring;
 import caseStudy.gui.MediaPane;
 import caseStudy.gui.MenuPane;
@@ -33,8 +34,7 @@ public class CaseStudy extends Application{
         menuPane=new MenuPane(this);
         grid.add(mediaButtons, 1, 1);
         grid.add(menuPane, 0, 1);
-        if(ab!=null)
-        grid.add(ab, 0, 0);
+        grid.add(ab==null?new BlankAnimation():ab, 0, 0);
         scene=new Scene(grid,IConstants.DIM_X,IConstants.DIM_Y);
         
         stage.setScene(scene);

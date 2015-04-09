@@ -59,7 +59,7 @@ public final class Spring extends AnimationBase implements IConstants{
         int i = 1;
         KeyFrame[] frames = new KeyFrame[100];
         while(i <= 100){
-            frames[i-1] = new KeyFrame(Duration.millis(50),new KeyValue(spring.xProperty(),200+200*(i-1)));
+            frames[i-1] = new KeyFrame(Duration.millis(50+i*10),new KeyValue(spring.xProperty(),200+200*(i-1)));
             timeline.getKeyFrames().add(frames[i-1]);
             i++;
         }

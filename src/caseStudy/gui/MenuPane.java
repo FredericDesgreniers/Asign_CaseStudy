@@ -23,6 +23,7 @@ public class MenuPane extends FlowPane{
     
     public MenuPane(CaseStudy caseStudy)
     {
+        this.setPrefSize(IConstants.DIM_X/2, IConstants.DIM_Y/2);
         this.caseStudy=caseStudy;
         calc1Btn=new Button(IConstants.AN_CALC1);
         calc1Btn.setOnAction(caseStudy.handler);
