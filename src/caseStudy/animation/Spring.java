@@ -57,9 +57,14 @@ public final class Spring extends AnimationBase implements IConstants{
     
     public void calculateKeyframes(){
         int i = 1;
-        KeyFrame[] frames = new KeyFrame[100];
-        while(i <= 100){
-            frames[i-1] = new KeyFrame(Duration.millis(50+i*10),new KeyValue(spring.xProperty(),200+200*(i-1)));
+        KeyFrame[] frames = new KeyFrame[1000];
+        while(i <= 1000){
+            double stretchPercent = 1+Math.cos(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
+            //spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight());
+            KeyValue stretchVal = new KeyValue(spring.scaleYProperty(), (stretchPercent*0.6 + 0.4));
+            KeyValue positionVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent*0.6 + 0.4)*spring.getFitHeight())/2);
+            frames[i-1] = new KeyFrame(Duration.millis(33*i), stretchVal, positionVal);
+            //hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent);
             timeline.getKeyFrames().add(frames[i-1]);
             i++;
         }
