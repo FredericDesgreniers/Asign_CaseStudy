@@ -15,6 +15,10 @@ public class ResistorsInParallel extends AnimationBase{
     public Rectangle rectangles[] = new Rectangle[12];
     public Circle resistorsSource[] = new Circle[3];
 
+    public ResistorsInParallel(String name) {
+        super(name);
+    }
+
     
     /*
     *

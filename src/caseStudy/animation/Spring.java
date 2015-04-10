@@ -23,8 +23,8 @@ public final class Spring extends AnimationBase implements IConstants{
     ImageView spring;
     Circle hangingMass;
     
-    public Spring(){
-        
+    public Spring(String name){
+        super(name);
         TextField[] fields = new TextField[3];
         for(int i = 0 ; i < 3 ; i++){
             fields[i] = new TextField("3.00");
@@ -39,7 +39,7 @@ public final class Spring extends AnimationBase implements IConstants{
         period = calculatePeriod();
         //placeholder.setCycleDuration(new Duration(period*1000)); //not sure what is happening here
         
-        Image springGraphic = new Image("/res/SpringCaseStudy.png"); //idk if this works
+        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png")); //idk if this works
         spring = new ImageView(springGraphic);
         spring.setFitHeight(100);
         spring.setPreserveRatio(true);

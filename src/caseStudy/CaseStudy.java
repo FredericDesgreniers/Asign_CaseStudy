@@ -23,23 +23,24 @@ public class CaseStudy extends Application{
         handler=new ButtonHandler(this);
         this.stage=primaryStage;
         setCurrentAnimation(null);
-                stage.setResizable(false);
+       stage.setResizable(false);
         stage.show();
         
     }
     public void setCurrentAnimation(AnimationBase ab)
     {
+                currentAnimation=ab;
         GridPane grid=new GridPane();
        
         mediaButtons=new MediaPane(this);
         mediaButtons.getStyleClass().add("pane");
         menuPane=new MenuPane(this);
-        currentAnimation=ab;
+
         grid.add(mediaButtons, 1, 1);
         grid.add(menuPane, 0, 1);
-        grid.add(ab==null?new BlankAnimation():ab, 0, 0);
+        grid.add(ab==null?new BlankAnimation(""):ab, 0, 0);
         scene=new Scene(grid,IConstants.DIM_X,IConstants.DIM_Y);
-        scene.getStylesheets().add("src/res/style1.css");
+        scene.getStylesheets().add(this.getClass().getResource("/res/style1.css").toString());
         grid.getStyleClass().add("grid");
         stage.setScene(scene);
 

@@ -7,10 +7,11 @@ import javafx.scene.layout.Pane;
 public abstract class AnimationBase extends Pane{
     
     public Timeline timeline = new Timeline();
-    
-    public AnimationBase()
+    public String name;
+    public AnimationBase(String name)
     {
-        this.setPrefSize(IConstants.DIM_X, IConstants.DIM_Y/2);
+        this.setPrefSize(IConstants.DIM_X, IConstants.DIM_Y/2-1);
+        this.name=name;
     }
     public void start()
     {

@@ -22,6 +22,10 @@ public class LenzLaw extends AnimationBase{
     public TextField magneticFieldField;
     
     Timeline placeholder; //remove when AnimationBase is completed
+
+    public LenzLaw(String name) {
+        super(name);
+    }
     
     
     

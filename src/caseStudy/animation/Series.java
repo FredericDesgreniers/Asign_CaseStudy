@@ -11,9 +11,9 @@ import caseStudy.AnimationBase;
  *
  * @author Fred
  */
-public class BlankAnimation extends AnimationBase{
+public class Series extends AnimationBase{
 
-    public BlankAnimation(String name) {
+    public Series(String name) {
         super(name);
     }
     

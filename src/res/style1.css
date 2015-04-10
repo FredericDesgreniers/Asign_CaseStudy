@@ -28,3 +28,34 @@
     -fx-fill: white;
     -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }
+.grid{
+    -fx-background-color:#cccccc;
+}
+.menuPane{
+    -fx-background-color:#999999;
+        -fx-border-color: black;
+    -fx-border-width:1 0 0 0;
+}
+
+.menuBtn{
+    -fx-background-color:none;
+    -fx-width:100%;
+    -fx-background-radius:0;
+    -fx-padding:20;
+        -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill:black;
+    -fx-cursor:hand;
+    -fx-border-color: transparent black transparent transparent;
+    -fx-border-width:1;
+}
+.menuBtn:hover{
+    -fx-background-color:
+        linear-gradient(to right,#999999 0%,#cccccc 30%, #cccccc 100%);
+    -fx-border-color: black transparent black transparent;
+}
+.menuBtnActive{
+    -fx-background-color:
+        linear-gradient(to right,#999999 0%,#cccccc 30%, #cccccc 100%);
+    -fx-border-color: black transparent black transparent;
+}
