@@ -21,13 +21,14 @@ public final class Spring extends AnimationBase implements IConstants{
     double springConstant;
     double amplitude;
     ImageView spring;
-    Circle hangingMass;
+    ImageView hangingMass;
     
     public Spring(String name){
         super(name);
         TextField[] fields = new TextField[3];
         for(int i = 0 ; i < 3 ; i++){
             fields[i] = new TextField("3.00");
+            getChildren().add(fields[i]);
         //0 -> massField
         //1 -> constantield
         //2 -> amplitudeField
@@ -37,18 +38,25 @@ public final class Spring extends AnimationBase implements IConstants{
         setSpringConstant(Double.parseDouble(fields[1].getText()));
         setAmplitude(Double.parseDouble(fields[2].getText()));
         period = calculatePeriod();
-        //placeholder.setCycleDuration(new Duration(period*1000)); //not sure what is happening here
+        timeline.setAutoReverse(true);
         
-        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png")); //idk if this works
+        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
         spring = new ImageView(springGraphic);
         spring.setFitHeight(100);
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
-        getChildren().add(spring);
         spring.setLayoutX(0);
+        getChildren().add(spring);
         
-        hangingMass = new Circle(300.00, 50.00, 30.00); //CHANGE FINAL POSITIONS
-        //getChildren().add(hangingMass);
+        Image massGraphic = new Image(this.getClass().getResourceAsStream("/res/MassCaseStudy.png"));
+        hangingMass = new ImageView(massGraphic);
+        hangingMass.setFitHeight(100);
+        hangingMass.setPreserveRatio(true);
+        hangingMass.setSmooth(true);
+        hangingMass.setLayoutX(0);
+        hangingMass.setScaleX(0.7);
+        hangingMass.setScaleY(0.7);
+        getChildren().add(hangingMass);
     }
     
     public double calculatePeriod(){
@@ -56,16 +64,16 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     public void calculateKeyframes(){
-        int i = 1;
-        KeyFrame[] frames = new KeyFrame[1000];
-        while(i <= 1000){
+        int i = 0;
+        KeyFrame[] frames = new KeyFrame[(int)(calculatePeriod()*1/2*1000)];
+        while(i < frames.length){
             double stretchPercent = 1+Math.cos(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
             //spring.setFitHeight((stretchPercent*0.6+20)*spring.getFitHeight());
             KeyValue stretchVal = new KeyValue(spring.scaleYProperty(), (stretchPercent*0.6 + 0.4));
             KeyValue positionVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent*0.6 + 0.4)*spring.getFitHeight())/2);
-            frames[i-1] = new KeyFrame(Duration.millis(33*i), stretchVal, positionVal);
+            frames[i] = new KeyFrame(Duration.millis(33*i), stretchVal, positionVal);
             //hangingMass.setCenterY(30.00 + (DIM_Y/2)*stretchPercent);
-            timeline.getKeyFrames().add(frames[i-1]);
+            timeline.getKeyFrames().add(frames[i]);
             i++;
         }
         timeline.getKeyFrames().addAll(frames);
