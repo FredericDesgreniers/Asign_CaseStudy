@@ -2,10 +2,9 @@ package caseStudy.animation;
 
 import caseStudy.AnimationBase;
 import caseStudy.IConstants;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,26 +16,34 @@ public final class Spring extends AnimationBase implements IConstants{
     double period;
     double springConstant;
     double amplitude;
+    TextField[] fields = new TextField[3];
     ImageView spring;
     ImageView hangingMass;
     
     public Spring(String name){
+        
         super(name);
-        TextField[] fields = new TextField[3];
-        for(int i = 0 ; i < 3 ; i++){
-            fields[i] = new TextField("3.00");
+        
+        Label[] labels = new Label[3];
+        labels[0] = new Label("Mass : ");
+        labels[1] = new Label("Spring constant : ");
+        labels[2] = new Label("Amplitude : ");
+        
+        for(int i = 0 ; i < fields.length ; i++){
+            getChildren().add(labels[i]);
+            labels[i].setLayoutY(i*40);
+            fields[i] = new TextField("1.00");
             getChildren().add(fields[i]);
+            fields[i].setLayoutY(i*40);
+            fields[i].setLayoutX(100);
         //0 -> massField
         //1 -> constantield
         //2 -> amplitudeField
         }
         
-        setMass(Double.parseDouble(fields[0].getText()));
-        setSpringConstant(Double.parseDouble(fields[1].getText()));
-        setAmplitude(Double.parseDouble(fields[2].getText()));
-        period = calculatePeriod();
         timeline.setAutoReverse(true);
         
+        //Creates the spring graphic and sets initial the parameters
         Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
         spring = new ImageView(springGraphic);
         spring.setFitHeight(100);
@@ -45,6 +52,7 @@ public final class Spring extends AnimationBase implements IConstants{
         spring.setLayoutX(400);
         getChildren().add(spring);
         
+        //Creates the hanging mass graphic and sets the initial parameters
         Image massGraphic = new Image(this.getClass().getResourceAsStream("/res/MassCaseStudy.png"));
         hangingMass = new ImageView(massGraphic);
         hangingMass.setFitHeight(100);
@@ -64,7 +72,14 @@ public final class Spring extends AnimationBase implements IConstants{
     
     //Adds the correct KeyFrames to the timeline for both animated objects
     public void calculateKeyframes(){
-        KeyFrame[] frames = new KeyFrame[(int)(calculatePeriod()*1/2*1000)];
+        setMass(Double.parseDouble(fields[0].getText()));
+        setSpringConstant(Double.parseDouble(fields[1].getText()));
+        setAmplitude(Double.parseDouble(fields[2].getText()));
+        
+        period = calculatePeriod();
+        
+        KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
+        
         for(int i = 0 ; i < frames.length ; i++){
             //creates an easy to use value to animate with
             double stretchPercent = 1+Math.cos(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
@@ -81,6 +96,8 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     public void start(){
+        
+        
         calculateKeyframes();
         timeline.play();
     }
