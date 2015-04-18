@@ -41,7 +41,7 @@ public final class Spring extends AnimationBase implements IConstants{
         //2 -> amplitudeField
         }
         
-        timeline.setAutoReverse(true);
+        //timeline.setAutoReverse(true);
         
         //Creates the spring graphic and sets initial the parameters
         Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
@@ -82,7 +82,7 @@ public final class Spring extends AnimationBase implements IConstants{
         
         for(int i = 0 ; i < frames.length ; i++){
             //creates an easy to use value to animate with
-            double stretchPercent = 1+Math.cos(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
+            double stretchPercent = 1+Math.sin(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
             //Creates KeyValues for the spring's stretch and position
             KeyValue stretchSpringVal = new KeyValue(spring.scaleYProperty(), (stretchPercent*0.6 + 0.4));
             KeyValue positionSpringVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent*0.6 + 0.4)*spring.getFitHeight())/2);
