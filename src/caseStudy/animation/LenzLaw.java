@@ -15,8 +15,6 @@ public class LenzLaw extends AnimationBase{
     public double magneticField;
     public double acceleration;
     public Circle object;
-    public Circle electricFieldSource;
-    public Circle magneticFieldSource;
     public TextField chargeField;
     public TextField electricFieldField;
     public TextField initialVelocityField;
