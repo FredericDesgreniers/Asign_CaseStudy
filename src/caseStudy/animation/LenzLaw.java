@@ -13,6 +13,7 @@ public class LenzLaw extends AnimationBase{
     public double electricField;
     public double initialVelocity;
     public double magneticField;
+    public double acceleration;
     public Circle object;
     public Circle electricFieldSource;
     public Circle magneticFieldSource;
@@ -20,19 +21,49 @@ public class LenzLaw extends AnimationBase{
     public TextField electricFieldField;
     public TextField initialVelocityField;
     public TextField magneticFieldField;
+    public Label chargeLabel;
+    public Label electricFieldLabel;
+    public Label initialVelocityLabel;
+    public Label magneticFieldLabel;
     
-    Timeline placeholder; //remove when AnimationBase is completed
+
 
     public LenzLaw(String name) {
+        
         super(name);
+        
+        this.chargeLabel = new Label("Charge: ");
+        this.electricFieldLabel = new Label("Electric Field: ");
+        this.initialVelocityLabel = new Label("Initial Veocity: ");
+        this.magneticFieldLabel = new Label("Magnetic Field: ");
+        
+        this.chargeField = new TextField("1");
+        this.electricFieldField = new TextField("0");
+        this.initialVelocityField = new TextField("0");
+        this.magneticFieldField = new TextField("0");
+        
+        getChildren.addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
+        
+    }
+    
+    public void calculateKeyFrame(){
+    	setCharge(double.parseDouble(chargeField.getText());
+    	setElectricField(double.parseDouble(electricFieldField.getText());
+    	setMagneticField(double.parseDouble(magneticFieldField.getText());
+    	setInitialVelocity(double.parseDouble(initialVelocityField.gettext());
+    	
+    	this.calculateAcceleration();
+    }
+    
+    
+    public void calculateAcceleration(){
+    	this.acceleration = 1*this.getForce()*0.001;
     }
     
     
     
     
-    public void initialize(){
-        this.placeholder = new Timeline(new KeyFrame(Duration.millis(1000)));
-    }
+    
     /*
     *
     *Accessor methods
