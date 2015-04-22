@@ -51,8 +51,8 @@ public class Series extends AnimationBase{
     public void setStaticGUI()
     {
         Label formula=new Label("Geometric series: AR^n");
-        formula.setLayoutX(250);
-        formula.setLayoutY(15);
+        formula.setLayoutX(30);
+        formula.setLayoutY(55);
         formula.setFont(new Font("Arial",20));
         Label aLabel=new Label("  set A ");
         aLabel.setTextFill(Paint.valueOf("black"));
