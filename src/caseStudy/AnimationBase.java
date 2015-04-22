@@ -17,6 +17,10 @@ public abstract class AnimationBase extends Pane{
     {
         timeline.play();
     }
+     public void done()
+    {
+        timeline.stop();
+    }
     public void reset()
     {
         timeline.stop();

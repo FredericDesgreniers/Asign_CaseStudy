@@ -5,6 +5,7 @@
  */
 package caseStudy;
 
+import caseStudy.animation.Bike;
 import caseStudy.animation.LenzLaw;
 import caseStudy.animation.Pendulum;
 import caseStudy.animation.ResistorsInParallel;
@@ -34,9 +35,10 @@ public class ButtonHandler implements EventHandler{
           {
               case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
               case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
-                                    
+              case IConstants.MED_DONE:caseStudy.currentAnimation.done();break;
+                  
               case IConstants.AN_CALC1:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC1));break;
-              case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC2));break;
+              case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Bike(IConstants.AN_CALC2));break;
               case IConstants.AN_WAVES1:caseStudy.setCurrentAnimation(new Spring(IConstants.AN_WAVES1));break;
               case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(IConstants.AN_WAVES2));break;
               case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(IConstants.AN_EM1));break;

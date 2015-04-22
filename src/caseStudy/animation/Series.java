@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -41,13 +42,18 @@ public class Series extends AnimationBase{
         circleSum.setLayoutX(IConstants.SERIES_SUM_X);
         circleSum.setLayoutY(IConstants.SERIES_SUM_Y);
         infinity=IConstants.SERIES_INFINITY_IN;
-        
-
-        this.getChildren().add(circleSum);
+        valueRText.setLayoutY(100);
+        getChildren().addAll(valueAText,valueRText,circleSum);
     }
-    
+    public void done()
+    {
+        timeline.stop();
+        getChildren().clear();
+        getChildren().addAll(valueAText,valueRText,circleSum);
+    }
     public void start()
     {
+        timeline=new Timeline();
         double a=getValueA();
         double r=getValueR();
         radius=0;
@@ -59,11 +65,12 @@ public class Series extends AnimationBase{
         radiusL.setLayoutX(IConstants.SERIES_VALUE_LABEL_X);
         radiusL.setLayoutY(IConstants.SERIES_VALUE_LABEL_Y);
         getChildren().add(radiusL);
+        int iMax=0;
         for(int i=0;i<IConstants.SERIES_MAXITERATIONS;i++)
         {
             
             double value=(a*Math.pow(r, i));
-            if(value==0)break;
+
             System.out.println(value);
             Circle c=new Circle();
             c.setOpacity(IConstants.SERIES_OPACITY_IN);
@@ -71,6 +78,7 @@ public class Series extends AnimationBase{
             c.setLayoutY(IConstants.SERIES_VALUE_Y);
             DecimalFormat f = new DecimalFormat("##.00");
             Label t=new Label(f.format(value));
+            
             t.setLayoutY(IConstants.SERIES_VALUET_Y);
             t.setTranslateX(IConstants.SERIES_VALUET_TY);
             t.setTextFill(Paint.valueOf(IConstants.SERIES_VALUET_COLOR));
@@ -119,10 +127,19 @@ public class Series extends AnimationBase{
             },circleF);
             
             timeline.getKeyFrames().addAll(kf0,kf1,kf2);
-            if(infinity>0)break;
+            if(infinity>0)
+            {
+                iMax=i;
+                break;
+            }
+            if(Double.parseDouble(f.format(value))<=0)
+            {
+                iMax=i;
+                break;
+            }
         }
-        
-        
+        KeyFrame kf=new KeyFrame(Duration.millis((iMax+1)*1000+1000),new KeyValue(circleSum.radiusProperty(),80));
+        timeline.getKeyFrames().add(kf);
         timeline.play();
     }
     
