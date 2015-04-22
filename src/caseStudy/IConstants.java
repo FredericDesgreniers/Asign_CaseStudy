@@ -26,5 +26,28 @@ public interface IConstants {
     
     //SPRING
     public static final double PI = 3.14159265359;
-    //
+    
+    
+    
+    //series
+    public static final int SERIES_MAXITERATIONS=100;
+    public static final int SERIES_OPACITY_IN=0;
+    public static final int SERIES_OPACITY_FN=1;
+    
+    public static final double SERIES_A_DEF=1;
+    public static final double SERIES_R_DEF=2;
+    public static final double SERIES_INFINITY_IN=-1;
+    public static final double SERIES_SUM_RADIUS_IN=50;
+    public static final double SERIES_SUM_X=500;
+    public static final double SERIES_SUM_Y=100;
+    public static final double SERIES_VALUE_LABEL_X=480;
+    public static final double SERIES_VALUE_LABEL_Y=90;
+    public static final double SERIES_SCALE_DEF=5;
+    public static final double SERIES_VALUE_Y=100;
+    public static final double SERIES_VALUET_Y=90;
+    public static final double SERIES_VALUET_TY=-10;
+    
+    public static final String SERIES_VALUET_COLOR="white";
+    public static final String SERIES_LABEL_STYLE="circleLabel";
+   
 }

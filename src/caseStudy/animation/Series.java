@@ -6,6 +6,7 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import caseStudy.IConstants;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
@@ -32,12 +33,14 @@ public class Series extends AnimationBase{
     double infinity;
     public Series(String name) {
         super(name);
-        valueAText=new TextField(1+"");
-        valueRText=new TextField(2+"");
+        valueAText=new TextField(String.valueOf(IConstants.SERIES_A_DEF));
+        valueRText=new TextField(String.valueOf(IConstants.SERIES_R_DEF));
         circleSum=new Circle();
-        circleSum.setRadius(50);
-        circleSum.setLayoutX(500);
-        circleSum.setLayoutY(100);
+        radius=IConstants.SERIES_SUM_RADIUS_IN;
+        circleSum.setRadius(radius);
+        circleSum.setLayoutX(IConstants.SERIES_SUM_X);
+        circleSum.setLayoutY(IConstants.SERIES_SUM_Y);
+        infinity=IConstants.SERIES_INFINITY_IN;
         
 
         this.getChildren().add(circleSum);
@@ -48,31 +51,29 @@ public class Series extends AnimationBase{
         double a=getValueA();
         double r=getValueR();
         radius=0;
-        infinity=-1;
-        int scale=5;
+        infinity=IConstants.SERIES_INFINITY_IN;
+        double scale=IConstants.SERIES_SCALE_DEF;
         
-        Label radiusL=new Label(radius+"");
-        radiusL.getStyleClass().add("circleLabel");
-        radiusL.setLayoutX(480);
-        radiusL.setLayoutY(90);
-        
-        radiusL.setTextFill(Paint.valueOf("red"));
+        Label radiusL=new Label(String.valueOf(radius));
+        radiusL.getStyleClass().add(IConstants.SERIES_LABEL_STYLE);
+        radiusL.setLayoutX(IConstants.SERIES_VALUE_LABEL_X);
+        radiusL.setLayoutY(IConstants.SERIES_VALUE_LABEL_Y);
         getChildren().add(radiusL);
-        for(int i=0;i<100;i++)
+        for(int i=0;i<IConstants.SERIES_MAXITERATIONS;i++)
         {
             
             double value=(a*Math.pow(r, i));
             if(value==0)break;
             System.out.println(value);
-            Circle c=new Circle(value/10);
-            c.setOpacity(0);
-            c.setRadius(20);
-            c.setLayoutY(100);
+            Circle c=new Circle();
+            c.setOpacity(IConstants.SERIES_OPACITY_IN);
+            c.setRadius((value/scale)>20?value/scale:20);
+            c.setLayoutY(IConstants.SERIES_VALUE_Y);
             DecimalFormat f = new DecimalFormat("##.00");
             Label t=new Label(f.format(value));
-            t.setLayoutY(90);
-            t.setTranslateX(-10);
-            t.setTextFill(Paint.valueOf("white"));
+            t.setLayoutY(IConstants.SERIES_VALUET_Y);
+            t.setTranslateX(IConstants.SERIES_VALUET_TY);
+            t.setTextFill(Paint.valueOf(IConstants.SERIES_VALUET_COLOR));
             t.setVisible(false);
             this.getChildren().addAll(c,t);
             KeyValue valuescXI=new KeyValue(c.centerXProperty(),0);
