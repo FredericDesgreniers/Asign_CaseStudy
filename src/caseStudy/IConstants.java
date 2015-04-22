@@ -11,8 +11,8 @@ public interface IConstants {
     public static final String MED_DONE= "DONE";
     public static final String MED_HELP= "HELP";
     
-    public static final String AN_CALC1="CALC1";
-    public static final String AN_CALC2="CALC2";
+    public static final String AN_CALC1="SERIES";
+    public static final String AN_CALC2="BIKE PROFIT";
     public static final String AN_EM1="LENZ LAW";
     public static final String AN_EM2="RESISTOR IN ||";
     public static final String AN_WAVES1="SPRING";

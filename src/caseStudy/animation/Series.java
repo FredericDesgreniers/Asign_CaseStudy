@@ -8,7 +8,6 @@ package caseStudy.animation;
 import caseStudy.AnimationBase;
 import caseStudy.IConstants;
 import java.awt.Color;
-import java.awt.Font;
 import java.text.DecimalFormat;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -19,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 /**
@@ -42,17 +42,35 @@ public class Series extends AnimationBase{
         circleSum.setLayoutX(IConstants.SERIES_SUM_X);
         circleSum.setLayoutY(IConstants.SERIES_SUM_Y);
         infinity=IConstants.SERIES_INFINITY_IN;
-        valueRText.setLayoutY(100);
-        getChildren().addAll(valueAText,valueRText,circleSum);
+        valueRText.setLayoutY(30);
+        valueRText.setLayoutX(50);
+        valueAText.setLayoutX(50);
+        
+        setStaticGUI();
+    }
+    public void setStaticGUI()
+    {
+        Label formula=new Label("Geometric series: AR^n");
+        formula.setLayoutX(250);
+        formula.setLayoutY(15);
+        formula.setFont(new Font("Arial",20));
+        Label aLabel=new Label("  set A ");
+        aLabel.setTextFill(Paint.valueOf("black"));
+        Label rLabel=new Label("  set R ");
+        rLabel.setLayoutY(30);
+        rLabel.setTextFill(Paint.valueOf("black"));
+        
+        getChildren().addAll(valueAText,valueRText,rLabel,aLabel,circleSum,formula);
     }
     public void done()
     {
         timeline.stop();
         getChildren().clear();
-        getChildren().addAll(valueAText,valueRText,circleSum);
+        setStaticGUI();
     }
     public void start()
     {
+        done();
         timeline=new Timeline();
         double a=getValueA();
         double r=getValueR();
@@ -73,10 +91,11 @@ public class Series extends AnimationBase{
 
             System.out.println(value);
             Circle c=new Circle();
+            c.setFill(Paint.valueOf("red"));
             c.setOpacity(IConstants.SERIES_OPACITY_IN);
             c.setRadius((value/scale)>20?value/scale:20);
             c.setLayoutY(IConstants.SERIES_VALUE_Y);
-            DecimalFormat f = new DecimalFormat("##.00");
+            DecimalFormat f = new DecimalFormat("##");
             Label t=new Label(f.format(value));
             
             t.setLayoutY(IConstants.SERIES_VALUET_Y);
@@ -84,12 +103,12 @@ public class Series extends AnimationBase{
             t.setTextFill(Paint.valueOf(IConstants.SERIES_VALUET_COLOR));
             t.setVisible(false);
             this.getChildren().addAll(c,t);
-            KeyValue valuescXI=new KeyValue(c.centerXProperty(),0);
+            KeyValue valuescXI=new KeyValue(c.centerXProperty(),200);
             KeyValue valuescXF=new KeyValue(c.centerXProperty(),500);
              KeyValue valuescOI=new KeyValue(c.opacityProperty(),0);
             KeyValue valuescOF=new KeyValue(c.opacityProperty(),1);
             
-            KeyValue valuetXI=new KeyValue(t.layoutXProperty(),0);
+            KeyValue valuetXI=new KeyValue(t.layoutXProperty(),200);
             KeyValue valuetXF=new KeyValue(t.layoutXProperty(),500);
             
             KeyValue circleI=new KeyValue(circleSum.radiusProperty(),radius/scale);

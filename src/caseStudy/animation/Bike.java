@@ -6,6 +6,7 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
@@ -13,7 +14,9 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
@@ -31,15 +34,27 @@ public class Bike extends AnimationBase{
     public Bike(String name) {
         super(name);
         startCostField=new TextField("700000");
+        startCostField.setLayoutX(100);
         bikeCostField=new TextField("110");
-        bikeCostField.setLayoutY(100);
-        getChildren().addAll(startCostField,bikeCostField);
+        bikeCostField.setLayoutY(30);
+        bikeCostField.setLayoutX(100);
+        setStaticGUI();
+
+    }
+    public void setStaticGUI()
+    {
+         Label scLabel=new Label("  Initial costs ");
+        scLabel.setTextFill(Paint.valueOf("black"));
+        Label bcLabel=new Label("  Cost per bike ");
+        bcLabel.setLayoutY(30);
+        bcLabel.setTextFill(Paint.valueOf("black"));
+        getChildren().addAll(startCostField,bikeCostField,scLabel,bcLabel);
     }
     public void done()
     {
         timeline.stop();
         getChildren().clear();
-        getChildren().addAll(startCostField,bikeCostField);
+        setStaticGUI();
     }
     public double getUnitSales(double price)
     {
@@ -55,8 +70,9 @@ public class Bike extends AnimationBase{
     }
     public void start()
     {
+        done();
         timeline=new Timeline();
-
+        
         List<Line> profits=new ArrayList();
         boolean wasPos=false;
         int price=0;
@@ -82,43 +98,76 @@ public class Bike extends AnimationBase{
             
             price++;
         }
-        Line xLine=new Line(profits.get(0).getStartX(),200,profits.get(0).getStartX(),200);
-        Line yLine=new Line(profits.get(0).getStartX(),200,profits.get(0).getStartX(),200);
-        
+        Line axisXLine=new Line(profits.get(0).getStartX(),200,profits.get(0).getStartX(),200);
+        Line axisYLine=new Line(profits.get(0).getStartX(),200,profits.get(0).getStartX(),200);
+        Label axisYLabel=new Label("0");
+        axisYLabel.setLayoutX(profits.get(0).getStartX());
+        axisYLabel.setLayoutY(220);
+        Label axisXLabel=new Label("0");
+        axisXLabel.setLayoutX(profits.get(0).getStartX()+20);
+        axisXLabel.setLayoutY(180);
         getChildren().addAll(profits);
-        getChildren().addAll(xLine,yLine);
+        getChildren().addAll(axisXLine,axisYLine,axisYLabel,axisXLabel);
         for(int i=0;i<profits.size();i++)
         {
-            Line l=profits.get(i);
-            Line l2=(i+1<profits.size())?profits.get(i+1):null;
+            int currentPrice=i;
+            double currentProfit=(200-profits.get(i).getEndY())*scaleY;
+            Line currentLine=profits.get(i);
+            Line nextLine=(i+1<profits.size())?profits.get(i+1):null;
                
-            l.setVisible(false);
-            KeyValue endX=new KeyValue(l.endXProperty(),l.getEndX());
-            KeyValue endY=new KeyValue(l.endYProperty(),l.getEndY());
-            
-            KeyValue lineY=null;
-            if(maxY==l.getEndY() )
+            currentLine.setVisible(false);
+            KeyValue KVendX=new KeyValue(currentLine.endXProperty(),currentLine.getEndX());
+            KeyValue KVendY=new KeyValue(currentLine.endYProperty(),currentLine.getEndY());
+            KeyValue KVaxisXLabel=new KeyValue(axisXLabel.layoutXProperty(),currentLine.getEndX()+20);
+            KeyValue KVaxisYline=null;
+            KeyValue KVaxisYLabel=null;
+            if(maxY==currentLine.getEndY() )
             {
                 yFinish=true;
             }
-            if(!yFinish)lineY=new KeyValue(yLine.endYProperty(),l.getEndY());
-            KeyValue lineX=new KeyValue(xLine.endXProperty(),l.getEndX());
-            l.setEndX(l.getStartX());
-            l.setEndY(l.getStartY());
+            if(!yFinish)
+            {
+                KVaxisYline=new KeyValue(axisYLine.endYProperty(),currentLine.getEndY());
+                KVaxisYLabel=new KeyValue(axisYLabel.layoutYProperty(),currentLine.getEndY()-20);
+            }
+            KeyValue lineX=new KeyValue(axisXLine.endXProperty(),currentLine.getEndX());
+            currentLine.setEndX(currentLine.getStartX());
+            currentLine.setEndY(currentLine.getStartY());
+          
             KeyFrame graphFrame=new KeyFrame(Duration.millis(100*i),new EventHandler<ActionEvent>(){
 
                 @Override
                 public void handle(ActionEvent event) {
-                    if(l2!=null)
-                    l2.setVisible(true);
+                    if(nextLine!=null)
+                    nextLine.setVisible(true);
                 }
                     
-            },endX,endY);
+            },KVendX,KVendY);
             KeyFrame axisFrame=null;
-            if(lineY!=null)
-                axisFrame=new KeyFrame(Duration.millis(100*i),lineX,lineY);
+            if(KVaxisYline!=null)
+            {
+                axisFrame=new KeyFrame(Duration.millis(100*i),new EventHandler<ActionEvent>(){
+
+                @Override
+                public void handle(ActionEvent event) {
+                    DecimalFormat f = new DecimalFormat("Profits: ##.00$");
+                    axisYLabel.setText(f.format(currentProfit));
+                    f = new DecimalFormat("Price: ##.00$");
+                    axisXLabel.setText(f.format(currentPrice));
+                }
+                    
+            },lineX,KVaxisYline,KVaxisYLabel,KVaxisXLabel);
+            }
             else 
-                axisFrame=new KeyFrame(Duration.millis(100*i),lineX);
+                axisFrame=new KeyFrame(Duration.millis(100*i),new EventHandler<ActionEvent>(){
+
+                @Override
+                public void handle(ActionEvent event) {
+                    DecimalFormat f = new DecimalFormat("Price: ##.00$");
+                    axisXLabel.setText(f.format(currentPrice));
+                }
+                    
+            },lineX,KVaxisXLabel);
             
                 
             timeline.getKeyFrames().addAll(graphFrame,axisFrame);
