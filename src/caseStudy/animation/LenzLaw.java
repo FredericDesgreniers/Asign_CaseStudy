@@ -5,6 +5,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 public class LenzLaw extends AnimationBase{
@@ -40,15 +41,15 @@ public class LenzLaw extends AnimationBase{
         this.initialVelocityField = new TextField("0");
         this.magneticFieldField = new TextField("0");
         
-        getChildren.addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
+        this.getChildren().addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
         
     }
     
     public void calculateKeyFrame(){
-    	setCharge(double.parseDouble(chargeField.getText());
-    	setElectricField(double.parseDouble(electricFieldField.getText());
-    	setMagneticField(double.parseDouble(magneticFieldField.getText());
-    	setInitialVelocity(double.parseDouble(initialVelocityField.gettext());
+    	setCharge(Double.parseDouble(chargeField.getText()));
+    	setElectricField(Double.parseDouble(electricFieldField.getText()));
+    	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
+    	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
     	this.calculateAcceleration();
     }

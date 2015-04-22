@@ -1,6 +1,7 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
@@ -28,18 +29,18 @@ public class ResistorsInParallel extends AnimationBase{
         this.labels[3] = new Label("Voltage: ");
         
         for(int i=0; i<4; i++){
-        getChildren.add(labels[i]);
-        getChildren.add(fields[i]);
+        getChildren().add(labels[i]);
+        getChildren().add(fields[i]);
         }
     }
 
     
     public void calculateKeyFrames(){
     
-    	setResistors(0, Double.parseDouble(fields[0]));
-    	setResistors(1, Double.parseDouble(fields[1]));
-    	setResistors(2, Double.parseDouble(fields[2]));
-    	setVoltage(Double.parseDouble(fields[3]));
+    	setResistor(0, Double.parseDouble(fields[0].getText()));
+    	setResistor(1, Double.parseDouble(fields[1].getText()));
+    	setResistor(2, Double.parseDouble(fields[2].getText()));
+    	setVoltage(Double.parseDouble(fields[3].getText()));
     	
     }
     
