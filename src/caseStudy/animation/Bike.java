@@ -80,11 +80,14 @@ public class Bike extends AnimationBase{
         double maxY=0;
         int scaleY=50000;
         boolean yFinish=false;
+        int startPrice=-1;
         while(true)
         {
             double profit=getProfit(price);
             if(profit>=0)
             {
+                if(startPrice<0)
+                startPrice=price;
                 wasPos=true;
                 Line line=new Line(100+price,200-lastY,100+price+1,200-profit/scaleY);
                 profits.add(line);
@@ -106,11 +109,15 @@ public class Bike extends AnimationBase{
         Label axisXLabel=new Label("0");
         axisXLabel.setLayoutX(profits.get(0).getStartX()+20);
         axisXLabel.setLayoutY(180);
+        
+        Label maxProfitLabel=new Label("");
+        maxProfitLabel.setLayoutY(55);
+        
         getChildren().addAll(profits);
-        getChildren().addAll(axisXLine,axisYLine,axisYLabel,axisXLabel);
+        getChildren().addAll(axisXLine,axisYLine,axisYLabel,axisXLabel,maxProfitLabel);
         for(int i=0;i<profits.size();i++)
         {
-            int currentPrice=i;
+            int currentPrice=i+startPrice;
             double currentProfit=(200-profits.get(i).getEndY())*scaleY;
             Line currentLine=profits.get(i);
             Line nextLine=(i+1<profits.size())?profits.get(i+1):null;
@@ -150,10 +157,16 @@ public class Bike extends AnimationBase{
 
                 @Override
                 public void handle(ActionEvent event) {
-                    DecimalFormat f = new DecimalFormat("Profits: ##.00$");
-                    axisYLabel.setText(f.format(currentProfit));
-                    f = new DecimalFormat("Price: ##.00$");
-                    axisXLabel.setText(f.format(currentPrice));
+                    DecimalFormat f = new DecimalFormat("##.00$");
+                    String profitT=f.format(currentProfit);
+                    axisYLabel.setText("Profit: "+profitT);
+                    
+                    f = new DecimalFormat("##.00$");
+                    String priceT=f.format(currentPrice);
+                    axisXLabel.setText("Price: "+priceT);
+                    
+                    maxProfitLabel.setText("Maximum profit of "+profitT+" at a price of "+priceT);
+                    
                 }
                     
             },lineX,KVaxisYline,KVaxisYLabel,KVaxisXLabel);

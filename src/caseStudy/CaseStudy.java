@@ -43,6 +43,7 @@ public class CaseStudy extends Application{
         scene.getStylesheets().add(this.getClass().getResource("/res/style1.css").toString());
         grid.getStyleClass().add("grid");
         stage.setScene(scene);
+        stage.setTitle(ab==null?"Animation Home":ab.getName());
 
     }
 }

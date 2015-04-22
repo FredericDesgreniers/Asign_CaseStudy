@@ -42,7 +42,7 @@ public class MenuPane extends VBox{
               b.getStyleClass().add("menuBtn");
               b.setPrefWidth(IConstants.DIM_X/2);
               if(caseStudy.currentAnimation!=null)
-              if(b.getText()==caseStudy.currentAnimation.name)
+              if(b.getText()==caseStudy.currentAnimation.getName())
               {
                   b.getStyleClass().add("menuBtnActive");
               }

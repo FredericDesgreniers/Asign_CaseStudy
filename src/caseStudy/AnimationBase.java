@@ -6,8 +6,8 @@ import javafx.scene.layout.Pane;
 
 public abstract class AnimationBase extends Pane{
     
-    public Timeline timeline = new Timeline();
-    public String name;
+    protected Timeline timeline = new Timeline();
+    private String name;
     public AnimationBase(String name)
     {
         this.setPrefSize(IConstants.DIM_X, IConstants.DIM_Y/2-1);
@@ -24,5 +24,17 @@ public abstract class AnimationBase extends Pane{
     public void reset()
     {
         timeline.stop();
+    }
+    public Timeline getTimeline()
+    {
+        return timeline;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public String getHelp()
+    {
+        return "No help availlable";
     }
 }
