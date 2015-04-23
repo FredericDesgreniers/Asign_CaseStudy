@@ -24,6 +24,7 @@ public interface IConstants {
     //ADD YOUR STUFF HERE, try to keep dome fomatting
     public static final int ZERO=0;
     public static final int TIME_MILLIS_CONVERSION=1000;
+    public static String DECIMALFORMAT_2DEC="##.00$";
     //Pendulum
     public static final double GRAVACC = 9.80665;
     //
@@ -37,6 +38,7 @@ public interface IConstants {
     public static final int SERIES_OPACITY_IN=0;
     public static final int SERIES_OPACITY_FN=1;
     public static final int SERIES_TIME_SUM_EX=500;
+    public static final int SERIES_VALUECIRCLE_RMIN=20;
     public static final double SERIES_A_DEF=1;
     public static final double SERIES_R_DEF=2;
     public static final double SERIES_INFINITY_IN=-1;
@@ -62,8 +64,29 @@ public interface IConstants {
     public static final String SERIES_LABEL_FORMULA_T="Geometric series: AR^n";
     public static final String SERIES_LABEL_A_T="  set A ";
     public static final String SERIES_LABEL_R_T="  set R ";
+    public static final String SERIES_TEXT_INFINITE="infinity";
     
+    //BIKE
+    public static final double BIKE_STARTCOST_DEF=700000;
+    public static final double BIKE_STARTCOST_X=100;
+    public static final double BIKE_BIKECOST_DEF=110;
+    public static final double BIKE_BIKECOST_x=100;
+    public static final double BIKE_BIKECOST_y=30;
+    public static final double BIKE_CONSTANT=200;
+    public static final double BIKE_MAXBIKES=70000;
+    public static final double BIKE_SCALE_Y=50000;
+    public static final double BIKE_GRAPH_X=100;
+    public static final double BIKE_GRAPH_Y=200;
+    public static final double BIKE_LABEL_AXISY_Y=220;
+    public static final double BIKE_LABEL_AXISX_Y=180;
+    public static final double BIKE_LABEL_AXISX_XOFFSET=20;
+    public static final double BIKE_LABEL_MAXPROFIT_Y=55;
     
+    public static final int STARTPRICE_IN=-1;
+    public static final String BIKE_LABEL_INITIALCOST_T="  Initial costs ";
+    public static final String BIKE_LABEL_BIKECOST_T="  Cost per bike ";
+    public static final String BIKE_TEXT_PRICE="Price: ";
+   
    //style
     public static final Paint PAINT_BLACK=Paint.valueOf("black");
     public static final Paint PAINT_RED=Paint.valueOf("red");
