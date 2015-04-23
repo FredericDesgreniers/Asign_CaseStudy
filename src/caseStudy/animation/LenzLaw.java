@@ -50,6 +50,9 @@ public class LenzLaw extends AnimationBase{
         this.initialVelocityField.setLayoutY(80);
         this.magneticFieldField.setLayoutX(100);
         this.magneticFieldField.setLayoutY(120);
+        this.electricFieldLabel.setLayoutY(40);
+        this.initialVelocityLabel.setLayoutY(80);
+        this.magneticFieldLabel.setLayoutY(120);
         
         this.getChildren().addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
         
@@ -86,7 +89,7 @@ public class LenzLaw extends AnimationBase{
     
     
     public void calculateAcceleration(){
-    	this.acceleration = 1*this.getForce()*0.001+0.001;
+    	this.acceleration = 1*this.getForce()*0.001+ 0.001;
     }
     
     
