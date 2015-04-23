@@ -24,6 +24,7 @@ public class LenzLaw extends AnimationBase{
     public Label electricFieldLabel;
     public Label initialVelocityLabel;
     public Label magneticFieldLabel;
+    public Label forceLabel;
     
 
 
@@ -77,6 +78,9 @@ public class LenzLaw extends AnimationBase{
     	}
     	
     	timeline.getKeyFrames.addAll(frames);
+    	
+    	forceLabel = new Label("Force: "+ getForce());
+    	getChildren.add(forceLabel);
     	
     }
     
