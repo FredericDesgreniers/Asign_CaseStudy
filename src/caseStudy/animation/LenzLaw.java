@@ -32,9 +32,9 @@ public class LenzLaw extends AnimationBase{
         super(name);
         
         this.chargeLabel = new Label("Charge: ");
-        this.electricFieldLabel = new Label("Electric Field: ");
-        this.initialVelocityLabel = new Label("Initial Veocity: ");
-        this.magneticFieldLabel = new Label("Magnetic Field: ");
+        this.electricFieldLabel = new Label("Electric Field(N/C): ");
+        this.initialVelocityLabel = new Label("Initial Veocity(m/s): ");
+        this.magneticFieldLabel = new Label("Magnetic Field(T): ");
         
         this.chargeField = new TextField("1");
         this.electricFieldField = new TextField("0");
@@ -65,6 +65,18 @@ public class LenzLaw extends AnimationBase{
     	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
     	acceleration = calculateAcceleration();
+    	
+    	KeyFrame[] frames = new KeyFrame[(int)(500/acceleration)];
+    	
+    	for(int i = 0; i<frames.length; i++){
+    		
+    		KeyValue keyValue = new KeyValue(object, i*3);
+    		
+    		frames[i] = new KeyFrame(Duration.millis(33*i), keyValue);
+    		timeline.getKeyFrames().add(frames[i]);
+    	}
+    	
+    	timeline.getKeyFrames.addAll(frames);
     	
     }
     
@@ -114,6 +126,10 @@ public class LenzLaw extends AnimationBase{
     public double getDistanceLeft(){
         int i = 5;
         return i;
+    }
+    
+    public double getAcceleration(){
+    	return this.acceleration;
     }
     
     
