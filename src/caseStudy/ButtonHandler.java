@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package caseStudy;
 
 import caseStudy.animation.Bike;
@@ -17,48 +12,42 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Fred
- */
 public class ButtonHandler implements EventHandler{
+    
     private CaseStudy caseStudy;
-    public ButtonHandler(CaseStudy caseStudy)
-    {
-        this.caseStudy=caseStudy;
-    }
-    @Override
-    public void handle(Event event) {
-      String name = "gg";
-      if(event.getSource() instanceof Button){
-          Button b=(Button)event.getSource();
-          name = b.getText();
-      }
-      
-      else if(event.getSource() instanceof MenuItem){
-          MenuItem m = (MenuItem)event.getSource();
-          name = m.getText();
-      }
-      
-      
-          System.out.println(name);
-          switch(name)
-          {
-              case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
-              case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
-              case IConstants.MED_DONE:caseStudy.currentAnimation.done();break;
-              case IConstants.MED_HELP: JOptionPane.showMessageDialog(null,caseStudy.currentAnimation.getHelp(),"Help",JOptionPane.INFORMATION_MESSAGE);break;
-                  
-              case IConstants.AN_CALC1:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC1));break;
-              case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Bike(IConstants.AN_CALC2));break;
-              case IConstants.AN_WAVES1:caseStudy.setCurrentAnimation(new Spring(IConstants.AN_WAVES1));break;
-              case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(IConstants.AN_WAVES2));break;
-              case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(IConstants.AN_EM1));break;
-              case IConstants.AN_EM2:caseStudy.setCurrentAnimation(new ResistorsInParallel(IConstants.AN_EM2));break;
-              case "EXIT":System.exit(0);break;
-          }
-          
-      
+    
+    public ButtonHandler(CaseStudy caseStudy){
+        this.caseStudy = caseStudy;
     }
     
+    @Override
+    public void handle(Event event) {
+        String name = "gg";
+        if(event.getSource() instanceof Button){
+            Button b=(Button)event.getSource();
+            name = b.getText();
+        }
+      
+        else if(event.getSource() instanceof MenuItem){
+            MenuItem m = (MenuItem)event.getSource();
+            name = m.getText();
+        }
+      
+        System.out.println(name);
+        switch(name)
+        {
+            case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
+            case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
+            case IConstants.MED_DONE:caseStudy.currentAnimation.done();break;
+            case IConstants.MED_HELP: JOptionPane.showMessageDialog(null,caseStudy.currentAnimation.getHelp(),"Help",JOptionPane.INFORMATION_MESSAGE);break;
+                  
+            case IConstants.AN_CALC1:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC1));break;
+            case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Bike(IConstants.AN_CALC2));break;
+            case IConstants.AN_WAVES1:caseStudy.setCurrentAnimation(new Spring(IConstants.AN_WAVES1));break;
+            case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(IConstants.AN_WAVES2));break;
+            case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(IConstants.AN_EM1));break;
+            case IConstants.AN_EM2:caseStudy.setCurrentAnimation(new ResistorsInParallel(IConstants.AN_EM2));break;
+            case "EXIT":System.exit(0);break;
+        }
+    } 
 }
