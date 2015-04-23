@@ -22,7 +22,7 @@ public class ButtonHandler implements EventHandler{
     
     @Override
     public void handle(Event event) {
-        String name = "gg";
+        String name = "";
         if(event.getSource() instanceof Button){
             Button b=(Button)event.getSource();
             name = b.getText();
