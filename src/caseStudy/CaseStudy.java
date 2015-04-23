@@ -50,12 +50,16 @@ public class CaseStudy extends Application{
         
         final Menu wavesMenu = new Menu("Waves");
         MenuItem springItem = new MenuItem(IConstants.AN_WAVES1);
+        springItem.setOnAction(handler);
         MenuItem pendulumItem = new MenuItem(IConstants.AN_WAVES2);
+        pendulumItem.setOnAction(handler);
         wavesMenu.getItems().addAll(springItem, pendulumItem);
         
         final Menu emMenu = new Menu("E&M");
         MenuItem lenzItem = new MenuItem(IConstants.AN_EM1);
+        lenzItem.setOnAction(handler);
         MenuItem resistorItem = new MenuItem(IConstants.AN_EM2);
+        resistorItem.setOnAction(handler);
         emMenu.getItems().addAll(lenzItem, resistorItem);
                 
         MenuBar menuBar = new MenuBar();
