@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Pendulum extends AnimationBase{
@@ -24,6 +23,56 @@ public class Pendulum extends AnimationBase{
         
         super(name);
        
+        setGUI();
+    }
+    
+    //calculates the period so that the loop only calculates what is necessary
+    public double calculatePeriod(){
+        return 2*IConstants.PI*Math.sqrt(getStringLength()/Math.abs(getGravAcc()));
+    }
+    
+    //Adds the correct KeyFrames to the timeline for both animated objects
+    public void calculateKeyframes(){
+        setStringLength(Double.parseDouble(fields[0].getText()));
+        setMaxAngle(Double.parseDouble(fields[1].getText()));
+        setGravAcc(Double.parseDouble(fields[2].getText()));
+        setPeriod(calculatePeriod());
+        KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
+        
+        for(int i = 0 ; i < frames.length ; i++){
+            //creates an easy to use value to animate with
+            double angle = getMaxAngle()*Math.cos(Math.sqrt(((double)i*33/1000)*2*IConstants.PI*Math.abs(getGravAcc())/getStringLength()));
+            //Creates KeyValues for the angle
+            KeyValue angleVal = new KeyValue(pendulum.rotateProperty(), angle);
+            //Creates KeyFrames and adds them to the array
+            frames[i] = new KeyFrame(Duration.millis(33*i), angleVal);
+            timeline.getKeyFrames().add(frames[i]);
+        }
+        timeline.getKeyFrames().addAll(frames);
+    }
+    
+    @Override
+    public void start(){
+        if(timeline.getCurrentTime() == Duration.millis(0)){
+            calculateKeyframes();
+        }
+        timeline.play();
+    }
+    
+    @Override
+    public void done()
+    {
+        timeline.stop();
+    }
+    
+    @Override
+    public void reset(){
+        timeline.stop();
+        getChildren().clear();
+        setGUI();
+    }
+    
+    public void setGUI(){
         Label[] labels = new Label[fields.length];
         labels[0] = new Label("String length : ");
         labels[1] = new Label("Max/Inital Angle : ");
@@ -50,43 +99,9 @@ public class Pendulum extends AnimationBase{
         pendulum = new ImageView(springGraphic);
         pendulum.setPreserveRatio(true);
         pendulum.setSmooth(true);
-        pendulum.setLayoutX(400);
+        pendulum.setLayoutX(450);
         pendulum.setLayoutY(-150);
         getChildren().add(pendulum);
-    }
-    
-    //calculates the period so that the loop only calculates what is necessary
-    public double calculatePeriod(){
-        return 2*IConstants.PI*Math.sqrt(getStringLength()/Math.abs(getGravAcc()));
-    }
-    
-    //Adds the correct KeyFrames to the timeline for both animated objects
-    public void calculateKeyframes(){
-        setStringLength(Double.parseDouble(fields[0].getText()));
-        setMaxAngle(Double.parseDouble(fields[1].getText()));
-        setGravAcc(Double.parseDouble(fields[2].getText()));
-        setPeriod(calculatePeriod());
-        System.out.println(stringLength + "::" + maxAngle + "::" + gravAcc);
-        KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
-        
-        for(int i = 0 ; i < frames.length ; i++){
-            //creates an easy to use value to animate with
-            double angle = getMaxAngle()*Math.cos(Math.sqrt(((double)i*33/1000)*2*IConstants.PI*getStringLength()/Math.abs(getGravAcc())));
-            System.out.println(angle);
-            //Creates KeyValues for the angle
-            KeyValue angleVal = new KeyValue(pendulum.rotateProperty(), angle);
-            //Creates KeyFrames and adds them to the array
-            frames[i] = new KeyFrame(Duration.millis(33*i), angleVal);
-            timeline.getKeyFrames().add(frames[i]);
-        }
-        timeline.getKeyFrames().addAll(frames);
-    }
-    
-    @Override
-    public void start(){
-        
-        calculateKeyframes();
-        timeline.play();
     }
     
     public void setPeriod(double period) {
