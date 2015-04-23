@@ -1,6 +1,7 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -49,7 +50,7 @@ public class ResistorsInParallel extends AnimationBase{
         for(int i=0; i<4; i++){
         labels[i].setLayoutY(i*40);
         getChildren().add(labels[i]);
-        fields[i] = new TextField();
+        fields[i] = new TextField("1");
         fields[i].setLayoutX(100);
         fields[i].setLayoutY(i*40);
         getChildren().add(fields[i]);
@@ -113,14 +114,44 @@ public class ResistorsInParallel extends AnimationBase{
         
         setValues();
         
-        totalResistanceLabel.setText("Total Resistance= "+(int)getTotalResistance());
-    
-    	this.timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>(){
+        totalResistanceLabel.setText("Total Resistance = "+getTotalResistance()+" Ohms");
+        currentInResistor[0].setText("Current in Resistor 1 = "+getCurrentinResistor(0)+" A");
+        currentInResistor[1].setText("Current in Resistor 2 = "+getCurrentinResistor(1)+" A");
+        currentInResistor[2].setText("Current in Resistor 3 = "+getCurrentinResistor(2)+" A");
+        
+        
+    	this.timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>(){
     	
     		public void handle(ActionEvent event){
     			nextShapeColored();
                 }
         }));
+        
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+    
+    public void done(){
+        timeline.stop();
+    }
+    public void reset(){
+        setValues();
+        currentlyColoredShape = 0;
+        currentInResistor[0].setText("Current in Resistor 1 = 0 A");
+        currentInResistor[1].setText("Current in Resistor 2 = 0 A");
+        currentInResistor[2].setText("Current in Resistor 3 = 0 A");
+        totalResistanceLabel.setText("Total Resistance = 0 Ohms");
+        
+        for(int i=0; i<rectangles.length; i++){
+            rectangles[i].setFill(Color.BLACK);
+        }
+        
+    }
+    
+    public String getHelp(){
+        return "This animation shows the current flowing into the circuit, and passing through\n the resistors which are placed in parellel. From the input values on the left side,\n "
+                + "the values above the circuit will change, which are the Total resistance of the system,\n and the current in each resistor. Values of the resistors could be between 1 and 10, and so\n is the value for the voltage"
+                + "in order for this application to work clearly.";
     }
     
     
@@ -138,23 +169,32 @@ public class ResistorsInParallel extends AnimationBase{
     
     
     public void nextShapeColored(){
-    	
-    	if(currentlyColoredShape>=12){
+        System.out.println("Done");
+        
+        if(currentlyColoredShape==4){
+            rectangles[4].setFill(Color.BLACK);
+            rectangles[7].setFill(Color.BLACK);
+            currentlyColoredShape=7;
+        }
+        
+    	if(currentlyColoredShape>=9){
+        rectangles[9].setFill(Color.BLACK);
     	rectangles[0].setFill(Color.BLUE);
     	currentlyColoredShape=0;
     	}
     	
-        if(currentlyColoredShape>=2 && currentlyColoredShape<5){
-            rectangles[currentlyColoredShape].setFill(null);
-            rectangles[currentlyColoredShape+3].setFill(null);
-            rectangles[currentlyColoredShape+1].setFill(Color.BLUE);
-            rectangles[currentlyColoredShape+4].setFill(Color.BLUE);
+        else if(currentlyColoredShape>=1 && currentlyColoredShape<4){
+            rectangles[currentlyColoredShape].setFill(Color.BLACK);
+            rectangles[currentlyColoredShape+3].setFill(Color.BLACK);
+            currentlyColoredShape++;
+            rectangles[currentlyColoredShape].setFill(Color.BLUE);
+            rectangles[currentlyColoredShape+3].setFill(Color.BLUE);
         }
         
     	else{
-    	rectangles[currentlyColoredShape].setFill(null);
-    	rectangles[currentlyColoredShape+1].setFill(null);
-    	currentlyColoredShape++;
+    	rectangles[currentlyColoredShape].setFill(Color.BLACK);
+        currentlyColoredShape++;
+    	rectangles[currentlyColoredShape].setFill(Color.BLUE);
     	}
     }
     
@@ -166,7 +206,7 @@ public class ResistorsInParallel extends AnimationBase{
     *
     */
 public double getTotalResistance(){
-    return (double)(1/(1/resistors[0]+1/resistors[1]+1/resistors[2]));
+    return (double)(1/(1/resistors[0]+1/(resistors[1]+resistors[2])));
 }
 
 public double getCurrentinResistor(int i){
