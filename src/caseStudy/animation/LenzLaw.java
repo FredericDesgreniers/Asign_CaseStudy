@@ -41,17 +41,31 @@ public class LenzLaw extends AnimationBase{
         this.initialVelocityField = new TextField("0");
         this.magneticFieldField = new TextField("0");
         
+        this.chargeField.setLayoutX(100);
+        this.chargeField.setLayoutY(0);
+        this.electricFieldField.setLayoutX(100);
+        this.electricFieldField.setLayoutY(40);
+        this.initialVelocityField.setLayoutX(100);
+        this.initialVelocityField.setLayoutY(80);
+        this.magneticFieldField.setLayoutX(100);
+        this.magneticFieldField.setLayoutY(120);
+        
         this.getChildren().addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
         
+        object = new Circle(100, 100, 50);
+        
+        this.getChildren().add(object);
     }
     
-    public void calculateKeyFrame(){
+    public void calculateKeyFrames(){
+    
     	setCharge(Double.parseDouble(chargeField.getText()));
     	setElectricField(Double.parseDouble(electricFieldField.getText()));
     	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
     	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
-    	this.calculateAcceleration();
+    	acceleration = calculateAcceleration();
+    	
     }
     
     
@@ -60,7 +74,11 @@ public class LenzLaw extends AnimationBase{
     }
     
     
-    
+    public void start(){
+    	
+    	calculateKeyFrames();
+    	timeline.play();
+    }
     
     
     /*
