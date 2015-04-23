@@ -45,7 +45,7 @@ public class CaseStudy extends Application{
         MenuItem seriesItem = new MenuItem(IConstants.AN_CALC1);
         seriesItem.setOnAction(handler);
         MenuItem bikeItem = new MenuItem(IConstants.AN_CALC2);
-        seriesItem.setOnAction(handler);
+        bikeItem.setOnAction(handler);
         calcMenu.getItems().addAll(seriesItem, bikeItem);
         
         final Menu wavesMenu = new Menu("Waves");
