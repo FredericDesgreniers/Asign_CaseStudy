@@ -1,10 +1,16 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class ResistorsInParallel extends AnimationBase{
     
@@ -16,7 +22,7 @@ public class ResistorsInParallel extends AnimationBase{
     public Rectangle rectangles[] = new Rectangle[12];
     public Circle resistorsSource[] = new Circle[3];
     public int currentlyColoredShape=0;
-    public resistanceLabel[] new Label[3];
+    public Label resistanceLabel[] = new Label[3];
 
 
 
@@ -33,7 +39,7 @@ public class ResistorsInParallel extends AnimationBase{
         this.resistanceLabel[1] = new Label("0 Ohms");
         this.resistanceLabel[2] = new Label("0 Ohms");
         
-        getChildren.addAll(resistanceLabel);
+        getChildren().addAll(resistanceLabel);
         
         for(int i=0; i<4; i++){
         getChildren().add(labels[i]);
@@ -50,8 +56,7 @@ public class ResistorsInParallel extends AnimationBase{
     
     	this.timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>(){
     	
-    		@Override
-    		publid void handle(ActionEvent event){
+    		public void handle(ActionEvent event){
     			nextShapeColored();
     			
     			if(currentlyColoredShape==3){
@@ -65,6 +70,8 @@ public class ResistorsInParallel extends AnimationBase{
     			if(currentlyColoredShape==10){
     				resistanceLabel[2] = new Label(resistors[2]+" Ohms");
     			}
+                }
+        }));
     }
 
     
