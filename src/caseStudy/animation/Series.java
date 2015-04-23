@@ -199,7 +199,6 @@ public class Series extends AnimationBase{
         timeline.play(); //play the whole damn thing
     }
     
-    
     public double getValue(int n)
     {
         return 0;
@@ -208,7 +207,6 @@ public class Series extends AnimationBase{
     {
         return 0;
     }
-    
     
     public double getValueA()
     {

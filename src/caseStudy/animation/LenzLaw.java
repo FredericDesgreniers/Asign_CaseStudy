@@ -64,7 +64,7 @@ public class LenzLaw extends AnimationBase{
     	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
     	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
-    	acceleration = calculateAcceleration();
+    	//acceleration = calculateAcceleration();
     	
     }
     

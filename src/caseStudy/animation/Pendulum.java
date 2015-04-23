@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -18,12 +19,11 @@ public class Pendulum extends AnimationBase{
     double gravAcc;
     TextField[] fields = new TextField[3];
     ImageView pendulum;
-    
-    Rectangle shape = new Rectangle(400,-150,100,300);
-    
+        
     public Pendulum(String name) {
         
         super(name);
+       
         Label[] labels = new Label[fields.length];
         labels[0] = new Label("String length : ");
         labels[1] = new Label("Max/Inital Angle : ");
@@ -45,12 +45,19 @@ public class Pendulum extends AnimationBase{
         //2 -> accelerationField
         }
         
-        getChildren().add(shape);
+        //Creates the spring graphic and sets initial the parameters
+        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/PendulumCaseStudy.png"));
+        pendulum = new ImageView(springGraphic);
+        pendulum.setPreserveRatio(true);
+        pendulum.setSmooth(true);
+        pendulum.setLayoutX(400);
+        pendulum.setLayoutY(-150);
+        getChildren().add(pendulum);
     }
     
     //calculates the period so that the loop only calculates what is necessary
     public double calculatePeriod(){
-        return 2*IConstants.PI*Math.sqrt(getStringLength()/getGravAcc());
+        return 2*IConstants.PI*Math.sqrt(getStringLength()/Math.abs(getGravAcc()));
     }
     
     //Adds the correct KeyFrames to the timeline for both animated objects
@@ -59,14 +66,15 @@ public class Pendulum extends AnimationBase{
         setMaxAngle(Double.parseDouble(fields[1].getText()));
         setGravAcc(Double.parseDouble(fields[2].getText()));
         setPeriod(calculatePeriod());
-        
+        System.out.println(stringLength + "::" + maxAngle + "::" + gravAcc);
         KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
         
         for(int i = 0 ; i < frames.length ; i++){
             //creates an easy to use value to animate with
-            double angle = getMaxAngle()*Math.cos(2*IConstants.PI*getStringLength()/getGravAcc());
+            double angle = getMaxAngle()*Math.cos(Math.sqrt(((double)i*33/1000)*2*IConstants.PI*getStringLength()/Math.abs(getGravAcc())));
+            System.out.println(angle);
             //Creates KeyValues for the angle
-            KeyValue angleVal = new KeyValue(shape.rotateProperty(), i*3);
+            KeyValue angleVal = new KeyValue(pendulum.rotateProperty(), angle);
             //Creates KeyFrames and adds them to the array
             frames[i] = new KeyFrame(Duration.millis(33*i), angleVal);
             timeline.getKeyFrames().add(frames[i]);

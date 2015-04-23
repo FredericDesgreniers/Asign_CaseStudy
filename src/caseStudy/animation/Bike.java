@@ -96,8 +96,7 @@ public class Bike extends AnimationBase{
         int scaleY=50000;
         boolean yFinish=false;
         int startPrice=-1;
-        while(true) 
-        {
+        while(true){
             double profit=getProfit(price);
             if(profit>=0)
             {
@@ -109,11 +108,9 @@ public class Bike extends AnimationBase{
                 if(200-lastY>200-profit/scaleY)
                     maxY=200-lastY;
                 lastY=profit/scaleY;
-            }else if(wasPos==true)
-            {
+            }else if(wasPos==true){
                 break;
             }
-            
             price++;
         }
         Line axisXLine=new Line(profits.get(0).getStartX(),200,profits.get(0).getStartX(),200);

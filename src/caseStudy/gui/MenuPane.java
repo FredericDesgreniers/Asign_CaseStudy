@@ -29,8 +29,8 @@ public class MenuPane extends VBox{
         this.setMaxWidth(IConstants.DIM_X/2);
         this.caseStudy=caseStudy;
         buttons=new Button[6];
-         buttons[0]=new Button(IConstants.AN_CALC1);
-         buttons[1]=new Button(IConstants.AN_CALC2);
+        buttons[0]=new Button(IConstants.AN_CALC1);
+        buttons[1]=new Button(IConstants.AN_CALC2);
         buttons[2]=new Button(IConstants.AN_WAVES1);
         buttons[3]=new Button(IConstants.AN_WAVES2);
         buttons[4]=new Button(IConstants.AN_EM1);
@@ -47,11 +47,6 @@ public class MenuPane extends VBox{
                   b.getStyleClass().add("menuBtnActive");
               }
         }
-        
-       
-
-
-
         
         this.getChildren().addAll(buttons);
         
