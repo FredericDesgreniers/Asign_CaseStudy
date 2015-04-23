@@ -30,7 +30,7 @@ public class Bike extends AnimationBase{
     TextField startCostField;
     TextField bikeCostField;
     TextField priceField;
-    Line[] lines;
+    Line[] lines; //that moment when you don't think about javafx chart when making your plan and now you're stuck with a line array
     public Bike(String name) {
         super(name);
         startCostField=new TextField("700000");
@@ -96,7 +96,7 @@ public class Bike extends AnimationBase{
         int scaleY=50000;
         boolean yFinish=false;
         int startPrice=-1;
-        while(true)
+        while(true) 
         {
             double profit=getProfit(price);
             if(profit>=0)
