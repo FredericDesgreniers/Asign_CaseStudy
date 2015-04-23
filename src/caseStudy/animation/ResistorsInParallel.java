@@ -45,6 +45,8 @@ public class ResistorsInParallel extends AnimationBase{
     }
     
     public void start(){
+        
+        setValues();
     
     	this.timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>(){
     	
@@ -66,7 +68,7 @@ public class ResistorsInParallel extends AnimationBase{
     }
 
     
-    public void calculateKeyFrames(){
+    public void setValues(){
     
     	setResistor(0, Double.parseDouble(fields[0].getText()));
     	setResistor(1, Double.parseDouble(fields[1].getText()));
