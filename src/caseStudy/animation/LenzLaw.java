@@ -1,10 +1,13 @@
 package caseStudy.animation;
 
 import caseStudy.AnimationBase;
+import javafx.animation.Animation;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
@@ -25,6 +28,7 @@ public class LenzLaw extends AnimationBase{
     public Label initialVelocityLabel;
     public Label magneticFieldLabel;
     public Label forceLabel;
+    public int timeCounter=0;
     
 
 
@@ -34,13 +38,14 @@ public class LenzLaw extends AnimationBase{
         
         this.chargeLabel = new Label("Charge: ");
         this.electricFieldLabel = new Label("Electric Field(N/C): ");
-        this.initialVelocityLabel = new Label("Initial Veocity(m/s): ");
+        this.initialVelocityLabel = new Label("Initial Velocity(m/s): ");
         this.magneticFieldLabel = new Label("Magnetic Field(T): ");
+        this.forceLabel = new Label("Force = 0 N");
         
         this.chargeField = new TextField("1");
-        this.electricFieldField = new TextField("0");
+        this.electricFieldField = new TextField("10");
         this.initialVelocityField = new TextField("0");
-        this.magneticFieldField = new TextField("0");
+        this.magneticFieldField = new TextField("10");
         
         this.chargeField.setLayoutX(100);
         this.chargeField.setLayoutY(0);
@@ -53,50 +58,68 @@ public class LenzLaw extends AnimationBase{
         this.electricFieldLabel.setLayoutY(40);
         this.initialVelocityLabel.setLayoutY(80);
         this.magneticFieldLabel.setLayoutY(120);
+        this.forceLabel.setLayoutX(300);
+        this.forceLabel.setLayoutY(10);
         
-        this.getChildren().addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
+        this.getChildren().addAll(chargeLabel, forceLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
         
-        object = new Circle(400, 100, 50);
+        object = new Circle(300, 100, 35);
         
         this.getChildren().add(object);
     }
     
     public void calculateKeyFrames(){
-    
-    	setCharge(Double.parseDouble(chargeField.getText()));
-    	setElectricField(Double.parseDouble(electricFieldField.getText()));
-    	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
-    	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
     	calculateAcceleration();
+        
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(5), new EventHandler<ActionEvent>(){
     	
-    	KeyFrame[] frames = new KeyFrame[(int)(500/acceleration)];
-    	
-    	for(int i = 0; i<frames.length; i++){
-    		
-    		KeyValue keyValue = new KeyValue(object.centerXProperty(), i*3);
-    		
-    		frames[i] = new KeyFrame(Duration.millis(33*i), keyValue);
-    		timeline.getKeyFrames().add(frames[i]);
-    	}
-    	
-    	timeline.getKeyFrames().addAll(frames);
-    	
-    	forceLabel = new Label("Force: "+ getForce());
-    	getChildren().add(forceLabel);
+    		public void handle(ActionEvent event){
+    			object.setLayoutX(getPosition(0.005*timeCounter));
+                        timeCounter++;
+                }
+        }));
     	
     }
     
     
     public void calculateAcceleration(){
-    	this.acceleration = 1*this.getForce()*0.001+ 0.001;
+    	this.acceleration = 1*this.getForce()+ 0.001;
+    }
+    
+    public double getPosition(double time){
+        calculateAcceleration();
+        return (initialVelocity*time + 0.5*acceleration*time*time);
     }
     
     
     public void start(){
-    	
+        setValues();
+        forceLabel.setText("Force = "+ (double)getForce()+" N");
     	calculateKeyFrames();
+        timeline.setCycleCount(Animation.INDEFINITE);
     	timeline.play();
+    }
+    
+    
+    public void done(){
+        timeline.stop();
+    }
+    
+    
+    public void reset(){
+        this.timeCounter=0;
+        this.chargeField.setText("1");
+        this.electricFieldField.setText("10");
+        this.magneticFieldField.setText("10");
+        this.initialVelocityField.setText("0");
+        this.forceLabel.setText("Force = 0 N");
+        object.setLayoutX(0);
+    }
+    
+    public String getHelp(){
+        return "This shows a mass with a certain charge that acts under a magnetic and electric field.\n There may also be an initial velocity, which "
+                + "changes the force on the mass.";
     }
     
     
@@ -146,6 +169,14 @@ public class LenzLaw extends AnimationBase{
     *Modifiers methods
     *
     */
+    
+    public void setValues(){
+        setCharge(Double.parseDouble(chargeField.getText()));
+    	setElectricField(Double.parseDouble(electricFieldField.getText()));
+    	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
+    	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
+    }
+    
     public void setCharge(double charge){
         this.charge = charge;
     }
