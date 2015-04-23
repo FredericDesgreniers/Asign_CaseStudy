@@ -4,6 +4,7 @@ import caseStudy.AnimationBase;
 import caseStudy.IConstants;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -34,14 +35,14 @@ public class Pendulum extends AnimationBase{
     //Adds the correct KeyFrames to the timeline for both animated objects
     public void calculateKeyframes(){
         setStringLength(Double.parseDouble(fields[0].getText()));
-        setMaxAngle(Double.parseDouble(fields[1].getText()));
+        setMaxAngle(Math.toRadians(Double.parseDouble(fields[1].getText()))*940/90);
         setGravAcc(Double.parseDouble(fields[2].getText()));
         setPeriod(calculatePeriod());
         KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
         
         for(int i = 0 ; i < frames.length ; i++){
             //creates an easy to use value to animate with
-            double angle = getMaxAngle()*Math.cos(Math.sqrt(((double)i*33/1000)*2*IConstants.PI*Math.abs(getGravAcc())/getStringLength()));
+            double angle = getMaxAngle()*Math.cos((double)i*33/1000)*Math.sqrt((2*IConstants.PI*Math.abs(getGravAcc())/getStringLength()));
             //Creates KeyValues for the angle
             KeyValue angleVal = new KeyValue(pendulum.rotateProperty(), angle);
             //Creates KeyFrames and adds them to the array
@@ -53,21 +54,20 @@ public class Pendulum extends AnimationBase{
     
     @Override
     public void start(){
-        if(timeline.getCurrentTime() == Duration.millis(0)){
-            calculateKeyframes();
-        }
+        done();
+        calculateKeyframes();
         timeline.play();
     }
     
     @Override
-    public void done()
-    {
+    public void done(){
         timeline.stop();
+        timeline = new Timeline();
     }
     
     @Override
     public void reset(){
-        timeline.stop();
+        done();
         getChildren().clear();
         setGUI();
     }

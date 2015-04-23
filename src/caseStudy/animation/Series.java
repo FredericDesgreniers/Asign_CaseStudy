@@ -7,7 +7,6 @@ package caseStudy.animation;
 
 import caseStudy.AnimationBase;
 import caseStudy.IConstants;
-import java.awt.Color;
 import java.text.DecimalFormat;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

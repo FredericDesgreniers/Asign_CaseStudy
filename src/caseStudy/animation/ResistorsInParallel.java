@@ -24,7 +24,7 @@ public class ResistorsInParallel extends AnimationBase{
     public int currentlyColoredShape=0;
     public Label resistanceLabel[] = new Label[3];
 
-
+    
 
 
     public ResistorsInParallel(String name) {

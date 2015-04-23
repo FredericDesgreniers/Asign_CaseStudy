@@ -14,6 +14,7 @@ import caseStudy.animation.Spring;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,11 +29,20 @@ public class ButtonHandler implements EventHandler{
     }
     @Override
     public void handle(Event event) {
-      if(event.getSource() instanceof Button)
-      {
+      String name = "gg";
+      if(event.getSource() instanceof Button){
           Button b=(Button)event.getSource();
-          System.out.println(b.getText());
-          switch(b.getText())
+          name = b.getText();
+      }
+      
+      else if(event.getSource() instanceof MenuItem){
+          MenuItem m = (MenuItem)event.getSource();
+          name = m.getText();
+      }
+      
+      
+          System.out.println(name);
+          switch(name)
           {
               case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
               case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
@@ -45,9 +55,10 @@ public class ButtonHandler implements EventHandler{
               case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(IConstants.AN_WAVES2));break;
               case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(IConstants.AN_EM1));break;
               case IConstants.AN_EM2:caseStudy.setCurrentAnimation(new ResistorsInParallel(IConstants.AN_EM2));break;
+              case "EXIT":System.exit(0);break;
           }
           
-      }
+      
     }
     
 }

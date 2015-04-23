@@ -38,7 +38,8 @@ public class CaseStudy extends Application{
         menuPane=new MenuPane(this);
 
         final Menu fileMenu = new Menu("File");
-        MenuItem exitItem = new MenuItem("Exit");
+        MenuItem exitItem = new MenuItem("EXIT");
+        exitItem.setOnAction(handler);
         fileMenu.getItems().add(exitItem);
         
         final Menu calcMenu = new Menu("Cal");

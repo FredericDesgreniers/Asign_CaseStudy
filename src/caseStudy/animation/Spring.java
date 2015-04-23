@@ -4,6 +4,7 @@ import caseStudy.AnimationBase;
 import caseStudy.IConstants;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,7 +25,7 @@ public final class Spring extends AnimationBase implements IConstants{
         
         super(name);
         //adds the ui elements
-        setStaticGUI();
+        setGUI();
     }
     
     //calculates the period so that the loop only calculates what is necessary
@@ -44,7 +45,7 @@ public final class Spring extends AnimationBase implements IConstants{
         
         for(int i = 0 ; i < frames.length ; i++){
             //creates an easy to use value to animate with
-            double stretchPercent = 1+Math.sin(((float)i*33.0f/1000.0f)*Math.sqrt(springConstant/mass));
+            double stretchPercent = 1+Math.sin(((double)i*33.0/1000.0)*Math.sqrt(springConstant/mass));
             //Creates KeyValues for the spring's stretch and position
             KeyValue stretchSpringVal = new KeyValue(spring.scaleYProperty(), (stretchPercent*0.6 + 0.2));
             KeyValue positionSpringVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent*0.6 + 0.2)*spring.getFitHeight())/2);
@@ -59,26 +60,25 @@ public final class Spring extends AnimationBase implements IConstants{
     
     @Override
     public void start(){
-        if(timeline.getCurrentTime() == Duration.millis(0)){
-            calculateKeyframes();
-        }
+        done();
+        calculateKeyframes();
         timeline.play();
     }
     
     @Override
-    public void done()
-    {
+    public void done(){
         timeline.stop();
+        timeline = new Timeline();
     }
     
     @Override
     public void reset(){
-        timeline.stop();
+        done();
         getChildren().clear();
-        setStaticGUI();
+        setGUI();
     }
     
-    public void setStaticGUI(){
+    public void setGUI(){
         Label[] labels = new Label[3];
         labels[0] = new Label("Mass : ");
         labels[1] = new Label("Spring constant : ");
