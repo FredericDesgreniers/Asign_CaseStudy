@@ -4,7 +4,7 @@ import caseStudy.AnimationBase;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.TextField;
 import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.KeyValue;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
@@ -53,7 +53,7 @@ public class LenzLaw extends AnimationBase{
         
         this.getChildren().addAll(chargeLabel, electricFieldLabel, magneticFieldLabel, initialVelocityLabel, chargeField, electricFieldField, magneticFieldField, initialVelocityField);
         
-        object = new Circle(100, 100, 50);
+        object = new Circle(400, 100, 50);
         
         this.getChildren().add(object);
     }
@@ -65,28 +65,28 @@ public class LenzLaw extends AnimationBase{
     	setMagneticField(Double.parseDouble(magneticFieldField.getText()));
     	setInitialVelocity(Double.parseDouble(initialVelocityField.getText()));
     	
-    	acceleration = calculateAcceleration();
+    	calculateAcceleration();
     	
     	KeyFrame[] frames = new KeyFrame[(int)(500/acceleration)];
     	
     	for(int i = 0; i<frames.length; i++){
     		
-    		KeyValue keyValue = new KeyValue(object, i*3);
+    		KeyValue keyValue = new KeyValue(object.centerXProperty(), i*3);
     		
     		frames[i] = new KeyFrame(Duration.millis(33*i), keyValue);
     		timeline.getKeyFrames().add(frames[i]);
     	}
     	
-    	timeline.getKeyFrames.addAll(frames);
+    	timeline.getKeyFrames().addAll(frames);
     	
     	forceLabel = new Label("Force: "+ getForce());
-    	getChildren.add(forceLabel);
+    	getChildren().add(forceLabel);
     	
     }
     
     
     public void calculateAcceleration(){
-    	this.acceleration = 1*this.getForce()*0.001;
+    	this.acceleration = 1*this.getForce()*0.001+0.001;
     }
     
     
