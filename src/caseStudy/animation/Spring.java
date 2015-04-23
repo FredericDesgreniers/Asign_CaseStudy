@@ -23,46 +23,8 @@ public final class Spring extends AnimationBase implements IConstants{
     public Spring(String name){
         
         super(name);
-        
-        Label[] labels = new Label[3];
-        labels[0] = new Label("Mass : ");
-        labels[1] = new Label("Spring constant : ");
-        labels[2] = new Label("Amplitude : ");
-        
-        for(int i = 0 ; i < fields.length ; i++){
-            getChildren().add(labels[i]);
-            labels[i].setLayoutY(i*40);
-            fields[i] = new TextField("1.00");
-            getChildren().add(fields[i]);
-            fields[i].setLayoutY(i*40);
-            fields[i].setLayoutX(100);
-        //0 -> massField
-        //1 -> constantield
-        //2 -> amplitudeField
-        }
-        
-        //timeline.setAutoReverse(true);
-        
-        //Creates the spring graphic and sets initial the parameters
-        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
-        spring = new ImageView(springGraphic);
-        spring.setFitHeight(100);
-        spring.setPreserveRatio(true);
-        spring.setSmooth(true);
-        spring.setLayoutX(400);
-        getChildren().add(spring);
-        
-        //Creates the hanging mass graphic and sets the initial parameters
-        Image massGraphic = new Image(this.getClass().getResourceAsStream("/res/MassCaseStudy.png"));
-        hangingMass = new ImageView(massGraphic);
-        hangingMass.setFitHeight(100);
-        hangingMass.setPreserveRatio(true);
-        hangingMass.setSmooth(true);
-        hangingMass.setLayoutX(400);
-        hangingMass.setLayoutY(spring.getFitHeight()-30);
-        hangingMass.setScaleX(0.7);
-        hangingMass.setScaleY(0.7);
-        getChildren().add(hangingMass);
+        //adds the ui elements
+        setStaticGUI();
     }
     
     //calculates the period so that the loop only calculates what is necessary
@@ -95,13 +57,74 @@ public final class Spring extends AnimationBase implements IConstants{
         timeline.getKeyFrames().addAll(frames);
     }
     
+    @Override
     public void start(){
-        
-        
-        calculateKeyframes();
+        if(timeline.getCurrentTime() == Duration.millis(0)){
+            calculateKeyframes();
+        }
         timeline.play();
     }
+    
+    @Override
+    public void done()
+    {
+        timeline.stop();
+    }
+    
+    @Override
+    public void reset(){
+        timeline.stop();
+        getChildren().clear();
+        setStaticGUI();
+    }
+    
+    public void setStaticGUI(){
+        Label[] labels = new Label[3];
+        labels[0] = new Label("Mass : ");
+        labels[1] = new Label("Spring constant : ");
+        labels[2] = new Label("Amplitude : ");
+        
+        for(int i = 0 ; i < fields.length ; i++){
+            getChildren().add(labels[i]);
+            labels[i].setLayoutY(i*40);
+            fields[i] = new TextField("1.00");
+            getChildren().add(fields[i]);
+            fields[i].setLayoutY(i*40);
+            fields[i].setLayoutX(100);
+        //0 -> massField
+        //1 -> constantield
+        //2 -> amplitudeField
+        }
+        
+        //timeline.setAutoReverse(true);
+        
+        //Creates the spring graphic and sets initial the parameters
+        Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
+        spring = new ImageView(springGraphic);
+        spring.setFitHeight(100);
+        spring.setPreserveRatio(true);
+        spring.setSmooth(true);
+        spring.setLayoutX(300);
+        getChildren().add(spring);
+        
+        //Creates the hanging mass graphic and sets the initial parameters
+        Image massGraphic = new Image(this.getClass().getResourceAsStream("/res/MassCaseStudy.png"));
+        hangingMass = new ImageView(massGraphic);
+        hangingMass.setFitHeight(100);
+        hangingMass.setPreserveRatio(true);
+        hangingMass.setSmooth(true);
+        hangingMass.setLayoutX(300);
+        hangingMass.setLayoutY(spring.getFitHeight()-30);
+        hangingMass.setScaleX(0.7);
+        hangingMass.setScaleY(0.7);
+        getChildren().add(hangingMass);
+    }
 
+    @Override
+    public String getHelp(){
+        return "Set the values and press play when you are ready";
+    }
+    
     public void setPeriod(double period) {
         this.period = period;
     }
