@@ -62,11 +62,33 @@ public class Series extends AnimationBase{
         
         getChildren().addAll(valueAText,valueRText,rLabel,aLabel,circleSum,formula);
     }
+    public void reset()
+    {
+        done();
+        timeline=new Timeline();
+        valueAText=new TextField(String.valueOf(IConstants.SERIES_A_DEF));
+        valueRText=new TextField(String.valueOf(IConstants.SERIES_R_DEF));
+        circleSum=new Circle();
+        radius=IConstants.SERIES_SUM_RADIUS_IN;
+        circleSum.setRadius(radius);
+        circleSum.setLayoutX(IConstants.SERIES_SUM_X);
+        circleSum.setLayoutY(IConstants.SERIES_SUM_Y);
+        infinity=IConstants.SERIES_INFINITY_IN;
+        valueRText.setLayoutY(30);
+        valueRText.setLayoutX(50);
+        valueAText.setLayoutX(50);
+        
+        setStaticGUI();
+    }
     public void done()
     {
         timeline.stop();
         getChildren().clear();
         setStaticGUI();
+    }
+    public String getHelp()
+    {
+        return "This will use the provided value to perform a sum of the equation. The end value will be the infitnite geometrical series sum for the provided euqation of AR^n.";
     }
     public void start()
     {

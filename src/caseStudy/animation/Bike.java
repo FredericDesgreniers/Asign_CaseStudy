@@ -41,6 +41,21 @@ public class Bike extends AnimationBase{
         setStaticGUI();
 
     }
+    public String getHelp()
+    {
+        return "This animation will draw a graph of the profit for each price and output the best price once ofund. You get to specify the initial startup cost and the price per bike for manifacturing";
+    }
+    public void reset()
+    {
+        done();
+        timeline=new Timeline();
+        startCostField=new TextField("700000");
+        startCostField.setLayoutX(100);
+        bikeCostField=new TextField("110");
+        bikeCostField.setLayoutY(30);
+        bikeCostField.setLayoutX(100);
+        setStaticGUI();
+    }
     public void setStaticGUI()
     {
          Label scLabel=new Label("  Initial costs ");

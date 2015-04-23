@@ -14,6 +14,7 @@ import caseStudy.animation.Spring;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,7 @@ public class ButtonHandler implements EventHandler{
               case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
               case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
               case IConstants.MED_DONE:caseStudy.currentAnimation.done();break;
+              case IConstants.MED_HELP: JOptionPane.showMessageDialog(null,caseStudy.currentAnimation.getHelp(),"Help",JOptionPane.INFORMATION_MESSAGE);break;
                   
               case IConstants.AN_CALC1:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC1));break;
               case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Bike(IConstants.AN_CALC2));break;
