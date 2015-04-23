@@ -15,6 +15,8 @@ public class ResistorsInParallel extends AnimationBase{
     public Label labels[]= new Label[4];
     public Rectangle rectangles[] = new Rectangle[12];
     public Circle resistorsSource[] = new Circle[3];
+    public int currentlyColoredShape=0;
+    public resistanceLabel[] new Label[3];
 
 
 
@@ -27,21 +29,68 @@ public class ResistorsInParallel extends AnimationBase{
         this.labels[1] = new Label("Resistor 2: ");
         this.labels[2] = new Label("Resistor 3: ");
         this.labels[3] = new Label("Voltage: ");
+        this.resistanceLabel[0] = new Label("0 Ohms");
+        this.resistanceLabel[1] = new Label("0 Ohms");
+        this.resistanceLabel[2] = new Label("0 Ohms");
+        
+        getChildren.addAll(resistanceLabel);
         
         for(int i=0; i<4; i++){
         getChildren().add(labels[i]);
         getChildren().add(fields[i]);
+        
+        rectangles[0].setFill(Color.BLUE);
+        
         }
+    }
+    
+    public void start(){
+        
+        setValues();
+    
+    	this.timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>(){
+    	
+    		@Override
+    		publid void handle(ActionEvent event){
+    			nextShapeColored();
+    			
+    			if(currentlyColoredShape==3){
+    				resistanceLabel[0] = new Label(resistors[0]+" Ohms");
+    			}
+    			
+    			if(currentlyColoredShape==7){
+    				resistanceLabel[1] = new Label(resistors[1]+" Ohms");
+    			}
+    			
+    			if(currentlyColoredShape==10){
+    				resistanceLabel[2] = new Label(resistors[2]+" Ohms");
+    			}
     }
 
     
-    public void calculateKeyFrames(){
+    public void setValues(){
     
     	setResistor(0, Double.parseDouble(fields[0].getText()));
     	setResistor(1, Double.parseDouble(fields[1].getText()));
     	setResistor(2, Double.parseDouble(fields[2].getText()));
     	setVoltage(Double.parseDouble(fields[3].getText()));
     	
+    }
+    
+    
+    
+    public void nextShapeColored(){
+    	
+    	if(currentlyColoredShape>=12){
+    	rectangles[0].setFill(Color.BLUE);
+    	currentlyColoredShape=0;
+    	}
+    	
+    	else{
+    	rectangles[currentlyColoredShape].setFill(null);
+    	rectangles[currentlyColoredShape+1].setFill(null);
+    	currentlyColoredShape++;
+    	}
     }
     
     
