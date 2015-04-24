@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class Pendulum extends AnimationBase{
+public class Pendulum extends AnimationBase implements IConstants{
 
     double period;
     double stringLength;
@@ -80,7 +80,7 @@ public class Pendulum extends AnimationBase{
         
         fields[0] = new TextField("2");
         fields[1] = new TextField("40");
-        fields[2] = new TextField("-9.8");
+        fields[2] = new TextField(GRAVACC + "");
         
         for(int i = 0 ; i < fields.length ; i++){
             getChildren().add(labels[i]);
