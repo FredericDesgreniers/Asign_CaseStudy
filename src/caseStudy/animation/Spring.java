@@ -60,10 +60,9 @@ public final class Spring extends AnimationBase implements IConstants{
             KeyValue positionMassVal = new KeyValue(hangingMass.yProperty(), (stretchPercent*spring.getFitHeight()-spring.getFitHeight()));
             //Creates KeyFrames and adds them to the array
             frames[i] = new KeyFrame(Duration.millis(FRAMERATE_MILLIS*i), stretchSpringVal, positionSpringVal, positionMassVal);
+            //adds the KeyFrames to the timeline
             timeline.getKeyFrames().add(frames[i]);
         }
-        //adds the KeyFrames to the timeline
-        timeline.getKeyFrames().addAll(frames);
     }
     
     //creates and adds all visual elements 

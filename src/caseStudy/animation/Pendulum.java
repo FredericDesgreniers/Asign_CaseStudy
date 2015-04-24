@@ -55,10 +55,9 @@ public class Pendulum extends AnimationBase implements IConstants{
             KeyValue angleVal = new KeyValue(pendulum.rotateProperty(), angle);
             //Creates KeyFrames and adds them to the array
             frames[i] = new KeyFrame(Duration.millis(FRAMERATE_MILLIS*i), angleVal);
+            //adds the KeyFrames to the timeline
             timeline.getKeyFrames().add(frames[i]);
         }
-        //adds the KeyFrames to the timeline
-        timeline.getKeyFrames().addAll(frames);
     }
     
     //starts to play the animation by calling the calculateKeyFrames method and playing the timeline    
