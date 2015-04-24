@@ -51,8 +51,8 @@ public final class Spring extends AnimationBase implements IConstants{
         
         //calculates the proper values and adds them to the KeyFrames timeline
         for(int i = ZERO ; i < frames.length ; i++){
-            //creates an easy to use value to animate with -> sin(time*sqrt(constant/mass))
-            double stretchPercent = PERCENT_STRETCH_CORRECTION + STRETCH_DAMPER*(ONE + Math.sin(((double)i*FRAMERATE_MILLIS/TIME_MILLIS_CONVERSION)*Math.sqrt(springConstant/mass)));
+            //creates an easy to use value to animate with -> cos(time*sqrt(constant/mass))
+            double stretchPercent = PERCENT_STRETCH_CORRECTION + STRETCH_DAMPER*(ONE + Math.cos(((double)i*FRAMERATE_MILLIS/TIME_MILLIS_CONVERSION)*Math.sqrt(springConstant/mass)));
             //Creates KeyValues for the spring's stretch and position
             KeyValue stretchSpringVal = new KeyValue(spring.scaleYProperty(), stretchPercent);
             KeyValue positionSpringVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - stretchPercent*spring.getFitHeight())/TWO);
