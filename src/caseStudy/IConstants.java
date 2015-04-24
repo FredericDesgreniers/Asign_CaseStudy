@@ -21,26 +21,17 @@ public interface IConstants {
     public static final String AN_WAVES1="SPRING";
     public static final String AN_WAVES2="PENDULUM";
     
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
-    public static final int TIME_MILLIS_CONVERSION = 1000;
-    public static String DECIMALFORMAT_2DEC="##.00$";
+    //ADD YOUR STUFF HERE, try to keep dome fomatting
+    public static final int ZERO=0;
+    public static final int TIME_MILLIS_CONVERSION=1000;
+    public static String DECIMALFORMAT_2DEC="##.00";
+    public static String DECIMALFORMAT_2DEC$="##.00$";
     //Pendulum
     public static final double GRAVACC = 9.80665;
     //
     
     //SPRING
-    public static final int  TEXTFIELD_AMT = 3;
-    public static final double PERCENT_STRETCH_CORRECTION = 0.2;
-    public static final double STRETCH_DAMPER = 0.6;
-    public static final int  FRAMERATE_MILLIS = 33;
-    public static final int LABEL_SPACING = 40;
-    public static final int FIELDS_X_DISPLACEMENT = 100;
-    public static final double PI = 3.14159265359;
-    public static final int IMAGE_X_DSPLACEMENT = 300;
-    public static final int IMAGEVIEW_HEIGHT = 100;
-    public static final double MASS_SCALE_FACTOR = 0.7;
+    public static final double PI = Math.PI;
     public static final Font FONT_ARIAL_20=new Font("Arial",20);
 
     //series
@@ -63,7 +54,7 @@ public interface IConstants {
     public static final double SERIES_VALUET_TY=-10;
     public static final double SERIES_VALUERT_Y=30;
     public static final double SERIES_VALUERT_X=50;
-    public static final double SERIES_VALUEAT_X=30;
+    public static final double SERIES_VALUEAT_X=50;
     public static final double SERIES_VALUECIRCLE_XI=200;
     public static final double SERIES_VALUECIRCLE_XF=500;
     public static final double SERIES_MAX_SUM_R=500;

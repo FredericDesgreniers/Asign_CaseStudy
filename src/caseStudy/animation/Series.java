@@ -94,7 +94,7 @@ public class Series extends AnimationBase implements IConstants{
         double r=getValueR(); //gets r value
         radius=ZERO;
         infinity=SERIES_INFINITY_IN; //sets infiity var to -1, once it's higher then 0, the sum is considered tending to infinity
-        Double tendValue=null;
+        Double tendValue=Math.PI;
         double scale=SERIES_SCALE_DEF; //scale of the circle, could make it dynamic, but keeping is like this for now
         
         Label radiusL=new Label(String.valueOf(radius)); //created a radius label for the big sum circle that doesnt move
@@ -168,9 +168,9 @@ public class Series extends AnimationBase implements IConstants{
 
                 @Override
                 public void handle(ActionEvent event) {
-                    DecimalFormat f = new DecimalFormat("##.00");
+                    DecimalFormat f = new DecimalFormat(DECIMALFORMAT_2DEC);
                     
-                    radiusL.setText(tend!=null?f.format(tend):infinity==circleSum.getRadius()?"SERIES_TEXT_INFINITE":f.format(circleSum.getRadius()*scale)); //set new sum value. Shitty code, but no time to clean up
+                    radiusL.setText(tend!=Math.PI?f.format(tend):infinity==circleSum.getRadius()?SERIES_TEXT_INFINITE:f.format(circleSum.getRadius()*scale)); //set new sum value. Shitty code, but no time to clean up
                 }
             },circleF);
             

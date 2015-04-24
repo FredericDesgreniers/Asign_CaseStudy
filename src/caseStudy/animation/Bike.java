@@ -169,11 +169,11 @@ public class Bike extends AnimationBase implements IConstants{
 
                 @Override
                 public void handle(ActionEvent event) {
-                    DecimalFormat f = new DecimalFormat(DECIMALFORMAT_2DEC);
+                    DecimalFormat f = new DecimalFormat(DECIMALFORMAT_2DEC$);
                     String profitT=f.format(currentProfit);
                     axisYLabel.setText("Profit: "+profitT);
                     
-                    f = new DecimalFormat(DECIMALFORMAT_2DEC);
+                    f = new DecimalFormat(DECIMALFORMAT_2DEC$);
                     String priceT=f.format(currentPrice);
                     axisXLabel.setText(BIKE_TEXT_PRICE+priceT);
                     
@@ -188,7 +188,7 @@ public class Bike extends AnimationBase implements IConstants{
 
                 @Override
                 public void handle(ActionEvent event) {
-                    DecimalFormat f = new DecimalFormat(BIKE_TEXT_PRICE+(DECIMALFORMAT_2DEC+"$"));
+                    DecimalFormat f = new DecimalFormat(BIKE_TEXT_PRICE+(DECIMALFORMAT_2DEC$));
                     axisXLabel.setText(f.format(currentPrice));
                 }
                     
