@@ -53,7 +53,7 @@ public interface IConstants {
     public static final double SERIES_VALUET_TY=-10;
     public static final double SERIES_VALUERT_Y=30;
     public static final double SERIES_VALUERT_X=50;
-    public static final double SERIES_VALUEAT_X=30;
+    public static final double SERIES_VALUEAT_X=50;
     public static final double SERIES_VALUECIRCLE_XI=200;
     public static final double SERIES_VALUECIRCLE_XF=500;
     public static final double SERIES_MAX_SUM_R=500;
