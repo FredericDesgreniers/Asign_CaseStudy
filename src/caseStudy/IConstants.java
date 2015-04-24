@@ -31,6 +31,9 @@ public interface IConstants {
     
     //Pendulum
     public static final double GRAVACC = 9.80665;
+    public static final int FIELDS2_X_DISPLACEMENT = 120;
+    public static final int IMAGE2_X_DISPLACEMENT = 450;
+    public static final int IMAGE2_Y_DISPLACEMENT = -150;
     
     //SPRING
     public static final double PI = Math.PI;
@@ -39,6 +42,7 @@ public interface IConstants {
     public static final double PERCENT_STRETCH_CORRECTION = 0.2;
     public static final double STRETCH_DAMPER = 0.6;
     public static final int FRAMERATE_MILLIS = 33;
+    public static final int DEFAULT_SPRING = 1;
     public static final int LABEL_SPACING = 40;
     public static final int FIELDS_X_DISPLACEMENT = 100;
     public static final int IMAGEVIEW_HEIGHT = 100;
