@@ -17,7 +17,7 @@ public final class Spring extends AnimationBase implements IConstants{
     double period;
     double springConstant;
     double amplitude;
-    TextField[] fields = new TextField[3];
+    TextField[] fields = new TextField[TEXTFIELD_AMT];
     ImageView spring;
     ImageView hangingMass;
     
@@ -30,7 +30,7 @@ public final class Spring extends AnimationBase implements IConstants{
     
     //calculates the period so that the loop only calculates what is necessary
     public double calculatePeriod(){
-        return 2*IConstants.PI*Math.sqrt(getMass()/getSpringConstant());
+        return TWO*IConstants.PI*Math.sqrt(getMass()/getSpringConstant());
     }
     
     //Adds the correct KeyFrames to the timeline for both animated objects
@@ -41,18 +41,18 @@ public final class Spring extends AnimationBase implements IConstants{
         
         period = calculatePeriod();
         
-        KeyFrame[] frames = new KeyFrame[(int)(period*1/2*1000)];
+        KeyFrame[] frames = new KeyFrame[(int)(period*TIME_MILLIS_CONVERSION/TWO)];
         
-        for(int i = 0 ; i < frames.length ; i++){
-            //creates an easy to use value to animate with
-            double stretchPercent = 1+Math.sin(((double)i*33.0/1000.0)*Math.sqrt(springConstant/mass));
+        for(int i = ZERO ; i < frames.length ; i++){
+            //creates an easy to use value to animate with -> sin(time*sqrt(constant/mass))
+            double stretchPercent = PERCENT_STRETCH_CORRECTION + STRETCH_DAMPER*(ONE + Math.sin(((double)i*FRAMERATE_MILLIS/TIME_MILLIS_CONVERSION)*Math.sqrt(springConstant/mass)));
             //Creates KeyValues for the spring's stretch and position
-            KeyValue stretchSpringVal = new KeyValue(spring.scaleYProperty(), (stretchPercent*0.6 + 0.2));
-            KeyValue positionSpringVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent*0.6 + 0.2)*spring.getFitHeight())/2);
+            KeyValue stretchSpringVal = new KeyValue(spring.scaleYProperty(), (stretchPercent));
+            KeyValue positionSpringVal = new KeyValue(spring.yProperty(), -(spring.getFitHeight() - (stretchPercent)*spring.getFitHeight())/TWO);
             //Creates KeyValues for the hangingMass's position
-            KeyValue positionMassVal = new KeyValue(hangingMass.yProperty(), ((stretchPercent*0.6 + 0.2)*spring.getFitHeight()-spring.getFitHeight()));
+            KeyValue positionMassVal = new KeyValue(hangingMass.yProperty(), ((stretchPercent)*spring.getFitHeight()-spring.getFitHeight()));
             //Creates KeyFrames and adds them to the array
-            frames[i] = new KeyFrame(Duration.millis(33*i), stretchSpringVal, positionSpringVal, positionMassVal);
+            frames[i] = new KeyFrame(Duration.millis(FRAMERATE_MILLIS*i), stretchSpringVal, positionSpringVal, positionMassVal);
             timeline.getKeyFrames().add(frames[i]);
         }
         timeline.getKeyFrames().addAll(frames);
@@ -79,18 +79,18 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     public void setGUI(){
-        Label[] labels = new Label[3];
+        Label[] labels = new Label[fields.length];
         labels[0] = new Label("Mass : ");
         labels[1] = new Label("Spring constant : ");
         labels[2] = new Label("Amplitude : ");
         
-        for(int i = 0 ; i < fields.length ; i++){
+        for(int i = ZERO ; i < labels.length ; i++){
             getChildren().add(labels[i]);
-            labels[i].setLayoutY(i*40);
+            labels[i].setLayoutY(i*LABEL_SPACING);
             fields[i] = new TextField("1.00");
             getChildren().add(fields[i]);
-            fields[i].setLayoutY(i*40);
-            fields[i].setLayoutX(100);
+            fields[i].setLayoutY(i*LABEL_SPACING);
+            fields[i].setLayoutX(FIELDS_X_DISPLACEMENT);
         //0 -> massField
         //1 -> constantield
         //2 -> amplitudeField
@@ -101,30 +101,32 @@ public final class Spring extends AnimationBase implements IConstants{
         //Creates the spring graphic and sets initial the parameters
         Image springGraphic = new Image(this.getClass().getResourceAsStream("/res/SpringCaseStudy.png"));
         spring = new ImageView(springGraphic);
-        spring.setFitHeight(100);
+        spring.setFitHeight(IMAGEVIEW_HEIGHT);
         spring.setPreserveRatio(true);
         spring.setSmooth(true);
-        spring.setLayoutX(300);
+        spring.setLayoutX(IMAGE_X_DSPLACEMENT);
         getChildren().add(spring);
         
         //Creates the hanging mass graphic and sets the initial parameters
         Image massGraphic = new Image(this.getClass().getResourceAsStream("/res/MassCaseStudy.png"));
         hangingMass = new ImageView(massGraphic);
-        hangingMass.setFitHeight(100);
+        hangingMass.setFitHeight(IMAGEVIEW_HEIGHT);
         hangingMass.setPreserveRatio(true);
         hangingMass.setSmooth(true);
-        hangingMass.setLayoutX(300);
+        hangingMass.setLayoutX(IMAGE_X_DSPLACEMENT);
         hangingMass.setLayoutY(spring.getFitHeight()-30);
-        hangingMass.setScaleX(0.7);
-        hangingMass.setScaleY(0.7);
+        hangingMass.setScaleX(MASS_SCALE_FACTOR);
+        hangingMass.setScaleY(MASS_SCALE_FACTOR);
         getChildren().add(hangingMass);
     }
-
+    
+    //method that defines what the help window displays
     @Override
     public String getHelp(){
         return "Set the values and press play when you are ready";
     }
     
+    //getter and  setter methods for the variables
     public void setPeriod(double period) {
         this.period = period;
     }

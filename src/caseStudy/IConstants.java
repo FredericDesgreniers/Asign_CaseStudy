@@ -21,16 +21,26 @@ public interface IConstants {
     public static final String AN_WAVES1="SPRING";
     public static final String AN_WAVES2="PENDULUM";
     
-    //ADD YOUR STUFF HERE, try to keep dome fomatting
-    public static final int ZERO=0;
-    public static final int TIME_MILLIS_CONVERSION=1000;
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+    public static final int TWO = 2;
+    public static final int TIME_MILLIS_CONVERSION = 1000;
     public static String DECIMALFORMAT_2DEC="##.00$";
     //Pendulum
     public static final double GRAVACC = 9.80665;
     //
     
     //SPRING
+    public static final int  TEXTFIELD_AMT = 3;
+    public static final double PERCENT_STRETCH_CORRECTION = 0.2;
+    public static final double STRETCH_DAMPER = 0.6;
+    public static final int  FRAMERATE_MILLIS = 33;
+    public static final int LABEL_SPACING = 40;
+    public static final int FIELDS_X_DISPLACEMENT = 100;
     public static final double PI = 3.14159265359;
+    public static final int IMAGE_X_DSPLACEMENT = 300;
+    public static final int IMAGEVIEW_HEIGHT = 100;
+    public static final double MASS_SCALE_FACTOR = 0.7;
     public static final Font FONT_ARIAL_20=new Font("Arial",20);
 
     //series
