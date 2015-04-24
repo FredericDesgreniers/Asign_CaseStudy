@@ -168,7 +168,7 @@ public class Series extends AnimationBase implements IConstants{
 
                 @Override
                 public void handle(ActionEvent event) {
-                    DecimalFormat f = new DecimalFormat("##.00");
+                    DecimalFormat f = new DecimalFormat(DECIMALFORMAT_2DEC);
                     
                     radiusL.setText(tend!=Math.PI?f.format(tend):infinity==circleSum.getRadius()?SERIES_TEXT_INFINITE:f.format(circleSum.getRadius()*scale)); //set new sum value. Shitty code, but no time to clean up
                 }

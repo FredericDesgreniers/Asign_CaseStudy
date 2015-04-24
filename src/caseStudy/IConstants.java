@@ -24,13 +24,14 @@ public interface IConstants {
     //ADD YOUR STUFF HERE, try to keep dome fomatting
     public static final int ZERO=0;
     public static final int TIME_MILLIS_CONVERSION=1000;
-    public static String DECIMALFORMAT_2DEC="##.00$";
+    public static String DECIMALFORMAT_2DEC="##.00";
+    public static String DECIMALFORMAT_2DEC$="##.00$";
     //Pendulum
     public static final double GRAVACC = 9.80665;
     //
     
     //SPRING
-    public static final double PI = 3.14159265359;
+    public static final double PI = Math.PI;
     public static final Font FONT_ARIAL_20=new Font("Arial",20);
 
     //series
