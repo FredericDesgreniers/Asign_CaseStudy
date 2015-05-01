@@ -26,11 +26,12 @@ import javafx.util.Duration;
  */
 public class Series extends AnimationBase implements IConstants{
 
-    TextField valueAText;
-    TextField valueRText;
-    Circle circleSum;
-    double radius;
-    double infinity;
+    private TextField valueAText;
+    private TextField valueRText;
+    private Circle circleSum;
+    private double radius;
+    private double infinity;
+    
     public Series(String name) {
         super(name);
         //Creates all the layout stuff, nothing special
@@ -86,7 +87,7 @@ public class Series extends AnimationBase implements IConstants{
     {
         return "This will use the provided value to perform a sum of the equation. The end value will be the infitnite geometrical series sum for the provided euqation of AR^n.";
     }
-    public void start()
+    public void start() //this could and should be in lots of seperate methods, but my plan didn't account for this. So it's really messy
     {
         done();
         timeline=new Timeline();

@@ -26,12 +26,12 @@ import javafx.util.Duration;
  * @author Fred
  */
 public class Bike extends AnimationBase implements IConstants{
-    int startCost=ZERO;
-    int bikeCost=ZERO;
-    TextField startCostField;
-    TextField bikeCostField;
-    TextField priceField;
-    Line[] lines; //that moment when you don't think about javafx chart when making your plan and now you're stuck with a line array
+    private int startCost=ZERO;
+    private int bikeCost=ZERO;
+    private TextField startCostField;
+    private TextField bikeCostField;
+    private  TextField priceField;
+    
     public Bike(String name) {
         super(name);
 
