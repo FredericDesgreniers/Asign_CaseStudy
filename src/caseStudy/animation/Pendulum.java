@@ -14,12 +14,12 @@ import javafx.util.Duration;
 public class Pendulum extends AnimationBase implements IConstants{
     
     //initializes a few variables
-    double period;
-    double stringLength;
-    double maxAngle;
-    double gravAcc;
-    TextField[] fields = new TextField[TEXTFIELD_AMT];
-    ImageView pendulum;
+    private double period;
+    private double stringLength;
+    private double maxAngle;
+    private double gravAcc;
+    private TextField[] fields = new TextField[TEXTFIELD_AMT];
+    private ImageView pendulum;
     
     //contructor
     public Pendulum(String name) {
@@ -29,13 +29,13 @@ public class Pendulum extends AnimationBase implements IConstants{
     }
     
     //calculates the period so that the loop only calculates what is necessary
-    public double calculatePeriod(){
+    private double calculatePeriod(){
         //formula -> 2*pi*sqrt(length/acceleration)
         return TWO*PI*Math.sqrt(getStringLength()/Math.abs(getGravAcc()));
     }
     
     //Adds the correct KeyFrames to the timeline for both animated objects
-    public void calculateKeyframes(){
+    private void calculateKeyframes(){
         try{
             setStringLength(Double.parseDouble(fields[0].getText()));
             setMaxAngle(Double.parseDouble(fields[1].getText()));
@@ -60,16 +60,8 @@ public class Pendulum extends AnimationBase implements IConstants{
         }
     }
     
-    //starts to play the animation by calling the calculateKeyFrames method and playing the timeline    
-    @Override
-    public void start(){
-        done();
-        calculateKeyframes();
-        timeline.play();
-    }
-    
     //creates and adds all visual elements 
-    public void setGUI(){
+    private void setGUI(){
         //creates and defines all the labels
         Label[] labels = new Label[fields.length];
         labels[0] = new Label("String length : ");
@@ -104,6 +96,14 @@ public class Pendulum extends AnimationBase implements IConstants{
         getChildren().add(pendulum);
     }
     
+    //starts to play the animation by calling the calculateKeyFrames method and playing the timeline    
+    @Override
+    public void start(){
+        done();
+        calculateKeyframes();
+        timeline.play();
+    }
+        
     //stops the timeline and makes a new one
     @Override
     public void done(){

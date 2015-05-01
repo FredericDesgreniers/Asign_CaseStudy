@@ -14,13 +14,13 @@ import javafx.util.Duration;
 public final class Spring extends AnimationBase implements IConstants{
     
     //initializing various variables for later use
-    double mass;
-    double period;
-    double springConstant;
-    double amplitude;
-    TextField[] fields = new TextField[TEXTFIELD_AMT];
-    ImageView spring;
-    ImageView hangingMass;
+    private double mass;
+    private double period;
+    private double springConstant;
+    private double amplitude;
+    private TextField[] fields = new TextField[TEXTFIELD_AMT];
+    private ImageView spring;
+    private ImageView hangingMass;
     
     //constructor
     public Spring(String name){
@@ -30,13 +30,13 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     //calculates the period so that the loop only calculates what is necessary
-    public double calculatePeriod(){
+    private double calculatePeriod(){
         //formula -> 2*pi*sqrt(mass/constant)
         return TWO*PI*Math.sqrt(getMass()/getSpringConstant());
     }
     
     //Adds the correct KeyFrames to the timeline for both animated objects
-    public void calculateKeyframes(){
+    private void calculateKeyframes(){
         //fetches the values for the 3 variables from the text fields
         try{
             setMass(Math.abs(Double.parseDouble(fields[0].getText())));
@@ -66,7 +66,7 @@ public final class Spring extends AnimationBase implements IConstants{
     }
     
     //creates and adds all visual elements 
-    public void setGUI(){
+    private void setGUI(){
         //creates and defines all the labels
         Label[] labels = new Label[fields.length];
         labels[0] = new Label("Mass : ");
