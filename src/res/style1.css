@@ -63,3 +63,11 @@
 {
     -fx-text-fill:red;
 }
+.graphLine
+{
+    -fx-stroke-width: 1;
+}
+.graphAxis
+{
+    -fx-stroke-width: 3;
+}

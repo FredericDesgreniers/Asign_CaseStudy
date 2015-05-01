@@ -104,6 +104,7 @@ public class Bike extends AnimationBase implements IConstants{
                 startPrice=price;
                 wasPos=true;
                 Line line=new Line(BIKE_GRAPH_X+price,BIKE_GRAPH_Y-lastY,BIKE_GRAPH_X+price+1,BIKE_GRAPH_Y-profit/scaleY);
+                line.getStyleClass().add("graphLine");
                 profits.add(line);
                 if(BIKE_GRAPH_Y-lastY>BIKE_GRAPH_Y-profit/scaleY)
                     maxY=BIKE_GRAPH_Y-lastY;
@@ -114,7 +115,9 @@ public class Bike extends AnimationBase implements IConstants{
             price++;
         }
         Line axisXLine=new Line(profits.get(ZERO).getStartX(),BIKE_GRAPH_Y,profits.get(ZERO).getStartX(),BIKE_GRAPH_Y);
+        axisXLine.getStyleClass().add("graphAxis");
         Line axisYLine=new Line(profits.get(ZERO).getStartX(),BIKE_GRAPH_Y,profits.get(ZERO).getStartX(),BIKE_GRAPH_Y);
+        axisYLine.getStyleClass().add("graphAxis");
         Label axisYLabel=new Label(String.valueOf(ZERO));
         axisYLabel.setLayoutX(profits.get(ZERO).getStartX());
         axisYLabel.setLayoutY(BIKE_LABEL_AXISY_Y);
