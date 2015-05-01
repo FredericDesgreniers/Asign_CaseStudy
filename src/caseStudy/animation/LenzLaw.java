@@ -13,22 +13,22 @@ import javafx.util.Duration;
 
 public class LenzLaw extends AnimationBase{
     
-    public double charge;
-    public double electricField;
-    public double initialVelocity;
-    public double magneticField;
-    public double acceleration;
-    public Circle object;
-    public TextField chargeField;
-    public TextField electricFieldField;
-    public TextField initialVelocityField;
-    public TextField magneticFieldField;
-    public Label chargeLabel;
-    public Label electricFieldLabel;
-    public Label initialVelocityLabel;
-    public Label magneticFieldLabel;
-    public Label forceLabel;
-    public int timeCounter=0;
+    private double charge;
+    private double electricField;
+    private double initialVelocity;
+    private double magneticField;
+    private double acceleration;
+    private Circle object;
+    private TextField chargeField;
+    private TextField electricFieldField;
+    private TextField initialVelocityField;
+    private TextField magneticFieldField;
+    private Label chargeLabel;
+    private Label electricFieldLabel;
+    private Label initialVelocityLabel;
+    private Label magneticFieldLabel;
+    private Label forceLabel;
+    private int timeCounter=0;
     
 
 
@@ -68,7 +68,7 @@ public class LenzLaw extends AnimationBase{
         this.getChildren().add(object);
     }
     
-    public void calculateKeyFrames(){
+    private void calculateKeyFrames(){
     	
     	calculateAcceleration();
         
@@ -83,11 +83,11 @@ public class LenzLaw extends AnimationBase{
     }
     
     
-    public void calculateAcceleration(){
+    private void calculateAcceleration(){
     	this.acceleration = 1*this.getForce()+ 0.001;
     }
     
-    public double getPosition(double time){
+    private double getPosition(double time){
         calculateAcceleration();
         return (initialVelocity*time + 0.5*acceleration*time*time);
     }

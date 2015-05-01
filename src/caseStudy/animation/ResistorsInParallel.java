@@ -15,17 +15,17 @@ import javafx.util.Duration;
 
 public class ResistorsInParallel extends AnimationBase{
     
-    public double resistors[] = new double[3];
-    public double voltage;
-    public TextField fields[] = new TextField[4];
-    public Label labels[]= new Label[4];
-    public Rectangle rectangles[] = new Rectangle[12];
-    public Rectangle batteryRectangles[] = new Rectangle[2];
-    public Circle resistorsSource[] = new Circle[3];
-    public int currentlyColoredShape=0;
-    public Label totalResistanceLabel = new Label("Total Resistance = 0 Ohms");
-    public Label currentInResistor[] = new Label[3];
-    public Label resistanceNumberLabel[] = new Label[3];
+    private double resistors[] = new double[3];
+    private double voltage;
+    private TextField fields[] = new TextField[4];
+    private Label labels[]= new Label[4];
+    private Rectangle rectangles[] = new Rectangle[12];
+    private Rectangle batteryRectangles[] = new Rectangle[2];
+    private Circle resistorsSource[] = new Circle[3];
+    private int currentlyColoredShape=0;
+    private Label totalResistanceLabel = new Label("Total Resistance = 0 Ohms");
+    private Label currentInResistor[] = new Label[3];
+    private Label resistanceNumberLabel[] = new Label[3];
 
     
 
@@ -157,7 +157,7 @@ public class ResistorsInParallel extends AnimationBase{
     
 
     
-    public void setValues(){
+    private void setValues(){
     
     	setResistor(0, Double.parseDouble(fields[0].getText()));
     	setResistor(1, Double.parseDouble(fields[1].getText()));
@@ -168,7 +168,7 @@ public class ResistorsInParallel extends AnimationBase{
     
     
     
-    public void nextShapeColored(){
+    private void nextShapeColored(){
         System.out.println("Done");
         
         if(currentlyColoredShape==4){
