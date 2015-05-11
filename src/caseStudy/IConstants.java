@@ -6,21 +6,32 @@ import javafx.scene.text.Font;
 public interface IConstants {
     //FRAME
     public static final double DIM_X=600;
+
     public static final double DIM_Y=600;
+    public static final double DIM_Y_HALF=DIM_Y/2-1;
     
+    public static final int half=2;
     //button constants
     public static final String MED_PLAY= "PLAY";
     public static final String MED_RESET="RESET";
     public static final String MED_DONE= "DONE";
     public static final String MED_HELP= "HELP";
     
+    
+    public static final String AN_CALC="Cal";
     public static final String AN_CALC1="SERIES";
     public static final String AN_CALC2="BIKE PROFIT";
+    public static final String AN_WAVES="Waves";
     public static final String AN_EM1="LENZ LAW";
     public static final String AN_EM2="RESISTOR IN ||";
+    public static final String AN_EM="E&M";
     public static final String AN_WAVES1="SPRING";
     public static final String AN_WAVES2="PENDULUM";
     
+    public static final String DEFAULT_HELP="No help availlable";
+    public static final String HELP_STR="Help";
+    public static final String EXIT_STR="Exit";
+    public static final String FILE_STR="File"; 
     //ADD YOUR STUFF HERE, try to keep dome fomatting
     public static final int ZERO=0;
     public static final int ONE = 1;
@@ -104,8 +115,14 @@ public interface IConstants {
     public static final String BIKE_TEXT_PRICE="Price: ";
    
    //style
+    public static final String STYLE1_PATH="/res/style1.css";
     public static final Paint PAINT_BLACK=Paint.valueOf("black");
     public static final Paint PAINT_RED=Paint.valueOf("red");
-    
+    public static final String STYLE_PANE="pane";
+    public static final String STYLE_MENUPANE="menuPane";
+    public static final String STYLE_GRID="grid";
+    public static final String TITLE_DEFAULT="Animaiton Home";
+    public static final String STYLE_MEDIABTN="mediaBtn";
+    public static final String STYLE_MENUBTN="menuBtn";
     
 }

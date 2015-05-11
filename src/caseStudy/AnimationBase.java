@@ -4,13 +4,13 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-public abstract class AnimationBase extends Pane{
+public abstract class AnimationBase extends Pane implements IConstants{
     
     protected Timeline timeline = new Timeline();
     private String name;
     public AnimationBase(String name)
     {
-        this.setPrefSize(IConstants.DIM_X, IConstants.DIM_Y/2-1);
+        this.setPrefSize(DIM_X, DIM_Y_HALF);
         this.name=name;
     }
     public void start()
@@ -35,6 +35,6 @@ public abstract class AnimationBase extends Pane{
     }
     public String getHelp()
     {
-        return "No help availlable";
+        return DEFAULT_HELP;
     }
 }

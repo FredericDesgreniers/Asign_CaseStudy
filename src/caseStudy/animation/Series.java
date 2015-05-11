@@ -181,13 +181,13 @@ public class Series extends AnimationBase implements IConstants{
                 iMax=i;
                 break;
             }
-            if(Double.parseDouble(f.format(value))<=0)//see if it's adding 0 and is then finished
+            if(Double.parseDouble(f.format(value))<=ZERO)//see if it's adding 0 and is then finished
             {
                 iMax=i;
                 break;
             }
         }
-        KeyFrame kf=new KeyFrame(Duration.millis((iMax+1)*1000+1000),new KeyValue(circleSum.radiusProperty(),80)); //set sum circle to static final size so it stays on screen and isn't too big or too small for screen
+        KeyFrame kf=new KeyFrame(Duration.millis((iMax+1)*TIME_MILLIS_CONVERSION+TIME_MILLIS_CONVERSION),new KeyValue(circleSum.radiusProperty(),80)); //set sum circle to static final size so it stays on screen and isn't too big or too small for screen
         timeline.getKeyFrames().add(kf);
         timeline.play(); //play the whole damn thing
     }

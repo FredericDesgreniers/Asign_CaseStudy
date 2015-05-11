@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javax.swing.JOptionPane;
 
-public class ButtonHandler implements EventHandler{
+public class ButtonHandler implements EventHandler,IConstants{
     
     private CaseStudy caseStudy;
     
@@ -36,18 +36,18 @@ public class ButtonHandler implements EventHandler{
         System.out.println(name);
         switch(name)
         {
-            case IConstants.MED_PLAY:caseStudy.currentAnimation.start();break;
-            case IConstants.MED_RESET:caseStudy.currentAnimation.reset();break;
-            case IConstants.MED_DONE:caseStudy.currentAnimation.done();break;
-            case IConstants.MED_HELP: JOptionPane.showMessageDialog(null,caseStudy.currentAnimation.getHelp(),"Help",JOptionPane.INFORMATION_MESSAGE);break;
+            case MED_PLAY:caseStudy.getCurrentAnimation().start();break;
+            case MED_RESET:caseStudy.getCurrentAnimation().reset();break;
+            case MED_DONE:caseStudy.getCurrentAnimation().done();break;
+            case MED_HELP: JOptionPane.showMessageDialog(null,caseStudy.getCurrentAnimation().getHelp(),HELP_STR,JOptionPane.INFORMATION_MESSAGE);break;
                   
-            case IConstants.AN_CALC1:caseStudy.setCurrentAnimation(new Series(IConstants.AN_CALC1));break;
-            case IConstants.AN_CALC2:caseStudy.setCurrentAnimation(new Bike(IConstants.AN_CALC2));break;
-            case IConstants.AN_WAVES1:caseStudy.setCurrentAnimation(new Spring(IConstants.AN_WAVES1));break;
-            case IConstants.AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(IConstants.AN_WAVES2));break;
-            case IConstants.AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(IConstants.AN_EM1));break;
-            case IConstants.AN_EM2:caseStudy.setCurrentAnimation(new ResistorsInParallel(IConstants.AN_EM2));break;
-            case "EXIT":System.exit(0);break;
+            case AN_CALC1:caseStudy.setCurrentAnimation(new Series(AN_CALC1));break;
+            case AN_CALC2:caseStudy.setCurrentAnimation(new Bike(AN_CALC2));break;
+            case AN_WAVES1:caseStudy.setCurrentAnimation(new Spring(AN_WAVES1));break;
+            case AN_WAVES2:caseStudy.setCurrentAnimation(new Pendulum(AN_WAVES2));break;
+            case AN_EM1:caseStudy.setCurrentAnimation(new LenzLaw(AN_EM1));break;
+            case AN_EM2:caseStudy.setCurrentAnimation(new ResistorsInParallel(AN_EM2));break;
+            case EXIT_STR:System.exit(ZERO);break;
         }
     } 
 }
