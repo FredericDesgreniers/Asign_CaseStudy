@@ -10,7 +10,7 @@ public interface IConstants {
     public static final double DIM_Y=600;
     public static final double DIM_Y_HALF=DIM_Y/2-1;
     
-    public static final int half=2;
+    public static final int HALF=2;
     //button constants
     public static final String MED_PLAY= "PLAY";
     public static final String MED_RESET="RESET";
@@ -124,5 +124,8 @@ public interface IConstants {
     public static final String TITLE_DEFAULT="Animaiton Home";
     public static final String STYLE_MEDIABTN="mediaBtn";
     public static final String STYLE_MENUBTN="menuBtn";
+    public static final String STYLE_GRAPHAXIS="graphAxis";
+    public static final String STYLE_GRAPHLINE="graphLine";
+    public static final String STYLE_MENUACTIVEBTN="menuBtnActive";
     
 }
